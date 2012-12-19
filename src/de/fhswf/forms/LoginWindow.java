@@ -11,6 +11,7 @@ package de.fhswf.forms;
 public class LoginWindow extends javax.swing.JFrame {
     
     MainWindow MainW;
+    BenutzerWindow BenutzerW;
 
     /**
      * Creates new form LoginWindow
@@ -60,6 +61,11 @@ public class LoginWindow extends javax.swing.JFrame {
         });
 
         jButtonRegistrieren.setText("Registrieren");
+        jButtonRegistrieren.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrierenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,6 +124,15 @@ public class LoginWindow extends javax.swing.JFrame {
         MainW.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButtonOkActionPerformed
+
+    private void jButtonRegistrierenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrierenActionPerformed
+        if (BenutzerW != null)
+        {
+            BenutzerW.dispose();
+        }
+        BenutzerW = new BenutzerWindow();
+        BenutzerW.setVisible(true);
+    }//GEN-LAST:event_jButtonRegistrierenActionPerformed
 
     /**
      * @param args the command line arguments

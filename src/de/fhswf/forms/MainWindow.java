@@ -11,6 +11,8 @@ package de.fhswf.forms;
 public class MainWindow extends javax.swing.JFrame {
 
     LoginWindow parent;
+    BenutzerWindow BenutzerW;
+    ProjektWindow ProjektW;
     
     /**
      * Creates new form MainWindow
@@ -89,6 +91,11 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableProjekte);
 
         jButtonProjektNeu.setText("Neu");
+        jButtonProjektNeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProjektNeuActionPerformed(evt);
+            }
+        });
 
         jButtonProjektBearbeiten.setText("Bearbeiten");
 
@@ -242,6 +249,11 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTableBenutzer);
 
         jButtonBenutzerNeu.setText("Neu");
+        jButtonBenutzerNeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBenutzerNeuActionPerformed(evt);
+            }
+        });
 
         jButtonBenutzerBearbeiten.setText("Bearbeiten");
 
@@ -298,6 +310,24 @@ public class MainWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBenutzerNeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBenutzerNeuActionPerformed
+        if (BenutzerW != null)
+        {
+            BenutzerW.dispose();
+        }
+        BenutzerW = new BenutzerWindow();
+        BenutzerW.setVisible(true);
+    }//GEN-LAST:event_jButtonBenutzerNeuActionPerformed
+
+    private void jButtonProjektNeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProjektNeuActionPerformed
+        if (ProjektW != null)
+        {
+            ProjektW.dispose();
+        }
+        ProjektW = new ProjektWindow();
+        ProjektW.setVisible(true);
+    }//GEN-LAST:event_jButtonProjektNeuActionPerformed
 
     /**
      * @param args the command line arguments

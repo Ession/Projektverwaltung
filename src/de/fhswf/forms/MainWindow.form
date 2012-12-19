@@ -132,6 +132,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Neu"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonProjektNeuActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonProjektBearbeiten">
               <Properties>
@@ -382,6 +385,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Neu"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBenutzerNeuActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonBenutzerBearbeiten">
               <Properties>
