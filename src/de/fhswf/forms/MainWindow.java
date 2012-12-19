@@ -37,30 +37,30 @@ public class MainWindow extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jTableProjekte = new javax.swing.JTable();
+        jButtonProjektNeu = new javax.swing.JButton();
+        jButtonProjektBearbeiten = new javax.swing.JButton();
+        jButtonProjektLoeschen = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jTableAnsprechpartner = new javax.swing.JTable();
+        jButtonAnsprechpartnerNeu = new javax.swing.JButton();
+        jButtonAnsprechpartnerBearbeiten = new javax.swing.JButton();
+        jButtonAnsprechpartnerLoeschen = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jTableOrganisation = new javax.swing.JTable();
+        jButtonOrganisationNeu = new javax.swing.JButton();
+        jButtonOrganisationBearbeiten = new javax.swing.JButton();
+        jButtonOrganisationLoeschen = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        jTableBenutzer = new javax.swing.JTable();
+        jButtonBenutzerNeu = new javax.swing.JButton();
+        jButtonBenutzerBearbeiten = new javax.swing.JButton();
+        jButtonBenutzerLoeschen = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -75,7 +75,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProjekte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -86,13 +86,13 @@ public class MainWindow extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableProjekte);
 
-        jButton1.setText("jButton1");
+        jButtonProjektNeu.setText("Neu");
 
-        jButton2.setText("jButton2");
+        jButtonProjektBearbeiten.setText("Bearbeiten");
 
-        jButton3.setText("jButton3");
+        jButtonProjektLoeschen.setText("Löschen");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,11 +104,11 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonProjektLoeschen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jButtonProjektBearbeiten)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonProjektNeu)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,9 +118,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButtonProjektNeu)
+                    .addComponent(jButtonProjektBearbeiten)
+                    .addComponent(jButtonProjektLoeschen))
                 .addContainerGap())
         );
 
@@ -128,7 +128,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel1.setText("Ansprechpartner");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAnsprechpartner.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -139,17 +139,17 @@ public class MainWindow extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTableAnsprechpartner);
 
-        jButton4.setText("jButton4");
+        jButtonAnsprechpartnerNeu.setText("Neu");
 
-        jButton5.setText("jButton5");
+        jButtonAnsprechpartnerBearbeiten.setText("Bearbeiten");
 
-        jButton6.setText("jButton6");
+        jButtonAnsprechpartnerLoeschen.setText("Löschen");
 
         jLabel2.setText("Organisation");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOrganisation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -160,13 +160,13 @@ public class MainWindow extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(jTableOrganisation);
 
-        jButton7.setText("jButton7");
+        jButtonOrganisationNeu.setText("Neu");
 
-        jButton8.setText("jButton8");
+        jButtonOrganisationBearbeiten.setText("Bearbeiten");
 
-        jButton9.setText("jButton9");
+        jButtonOrganisationLoeschen.setText("Löschen");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -187,17 +187,17 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton6)
+                                .addComponent(jButtonAnsprechpartnerLoeschen)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5)
+                                .addComponent(jButtonAnsprechpartnerBearbeiten)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4))
+                                .addComponent(jButtonAnsprechpartnerNeu))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton9)
+                                .addComponent(jButtonOrganisationLoeschen)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton8)
+                                .addComponent(jButtonOrganisationBearbeiten)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7)))))
+                                .addComponent(jButtonOrganisationNeu)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -209,9 +209,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jButtonAnsprechpartnerNeu)
+                    .addComponent(jButtonAnsprechpartnerBearbeiten)
+                    .addComponent(jButtonAnsprechpartnerLoeschen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,15 +220,15 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(jButtonOrganisationNeu)
+                    .addComponent(jButtonOrganisationBearbeiten)
+                    .addComponent(jButtonOrganisationLoeschen))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Ansprechpartner", jPanel2);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jTableBenutzer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -239,13 +239,13 @@ public class MainWindow extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(jTableBenutzer);
 
-        jButton10.setText("jButton10");
+        jButtonBenutzerNeu.setText("Neu");
 
-        jButton11.setText("jButton11");
+        jButtonBenutzerBearbeiten.setText("Bearbeiten");
 
-        jButton12.setText("jButton12");
+        jButtonBenutzerLoeschen.setText("Löschen");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -257,11 +257,11 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton12)
+                        .addComponent(jButtonBenutzerLoeschen)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)
+                        .addComponent(jButtonBenutzerBearbeiten)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton10)))
+                        .addComponent(jButtonBenutzerNeu)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -271,9 +271,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11)
-                    .addComponent(jButton12))
+                    .addComponent(jButtonBenutzerNeu)
+                    .addComponent(jButtonBenutzerBearbeiten)
+                    .addComponent(jButtonBenutzerLoeschen))
                 .addContainerGap())
         );
 
@@ -334,18 +334,18 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonAnsprechpartnerBearbeiten;
+    private javax.swing.JButton jButtonAnsprechpartnerLoeschen;
+    private javax.swing.JButton jButtonAnsprechpartnerNeu;
+    private javax.swing.JButton jButtonBenutzerBearbeiten;
+    private javax.swing.JButton jButtonBenutzerLoeschen;
+    private javax.swing.JButton jButtonBenutzerNeu;
+    private javax.swing.JButton jButtonOrganisationBearbeiten;
+    private javax.swing.JButton jButtonOrganisationLoeschen;
+    private javax.swing.JButton jButtonOrganisationNeu;
+    private javax.swing.JButton jButtonProjektBearbeiten;
+    private javax.swing.JButton jButtonProjektLoeschen;
+    private javax.swing.JButton jButtonProjektNeu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -358,9 +358,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTableAnsprechpartner;
+    private javax.swing.JTable jTableBenutzer;
+    private javax.swing.JTable jTableOrganisation;
+    private javax.swing.JTable jTableProjekte;
     // End of variables declaration//GEN-END:variables
 }
