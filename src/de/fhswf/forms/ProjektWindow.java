@@ -15,6 +15,7 @@ public class ProjektWindow extends javax.swing.JFrame {
      */
     public ProjektWindow() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

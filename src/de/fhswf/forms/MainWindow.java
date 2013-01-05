@@ -13,6 +13,8 @@ public class MainWindow extends javax.swing.JFrame {
     LoginWindow parent;
     BenutzerWindow BenutzerW;
     ProjektWindow ProjektW;
+    AnsprechpartnerWindow AnsprechpartnerW;
+    OrganisationWindow OrganisationW;
     
     /**
      * Creates new form MainWindow
@@ -20,6 +22,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow(LoginWindow _parent) {
         initComponents();
         parent = _parent;
+        setLocationRelativeTo(null);
     }
     
     public MainWindow() {
@@ -98,6 +101,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButtonProjektBearbeiten.setText("Bearbeiten");
+        jButtonProjektBearbeiten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProjektBearbeitenActionPerformed(evt);
+            }
+        });
 
         jButtonProjektLoeschen.setText("Löschen");
 
@@ -149,6 +157,11 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTableAnsprechpartner);
 
         jButtonAnsprechpartnerNeu.setText("Neu");
+        jButtonAnsprechpartnerNeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnsprechpartnerNeuActionPerformed(evt);
+            }
+        });
 
         jButtonAnsprechpartnerBearbeiten.setText("Bearbeiten");
 
@@ -170,6 +183,11 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTableOrganisation);
 
         jButtonOrganisationNeu.setText("Neu");
+        jButtonOrganisationNeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrganisationNeuActionPerformed(evt);
+            }
+        });
 
         jButtonOrganisationBearbeiten.setText("Bearbeiten");
 
@@ -328,6 +346,28 @@ public class MainWindow extends javax.swing.JFrame {
         ProjektW = new ProjektWindow();
         ProjektW.setVisible(true);
     }//GEN-LAST:event_jButtonProjektNeuActionPerformed
+
+    private void jButtonProjektBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProjektBearbeitenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonProjektBearbeitenActionPerformed
+
+    private void jButtonAnsprechpartnerNeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnsprechpartnerNeuActionPerformed
+        if (AnsprechpartnerW != null)
+        {
+            AnsprechpartnerW.dispose();
+        }
+        AnsprechpartnerW = new AnsprechpartnerWindow();
+        AnsprechpartnerW.setVisible(true);
+    }//GEN-LAST:event_jButtonAnsprechpartnerNeuActionPerformed
+
+    private void jButtonOrganisationNeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrganisationNeuActionPerformed
+        if (OrganisationW != null)
+        {
+            OrganisationW.dispose();
+        }
+        OrganisationW = new OrganisationWindow();
+        OrganisationW.setVisible(true);
+    }//GEN-LAST:event_jButtonOrganisationNeuActionPerformed
 
     /**
      * @param args the command line arguments

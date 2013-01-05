@@ -15,6 +15,7 @@ public class BenutzerWindow extends javax.swing.JFrame {
      */
     public BenutzerWindow() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -79,6 +80,11 @@ public class BenutzerWindow extends javax.swing.JFrame {
         });
 
         jButtonSpeichern.setText("Speichern");
+        jButtonSpeichern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSpeichernActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,7 +115,7 @@ public class BenutzerWindow extends javax.swing.JFrame {
                             .addComponent(jTextFieldOrt)
                             .addComponent(jTextFieldPostleitzahl)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 137, Short.MAX_VALUE)
+                        .addGap(0, 108, Short.MAX_VALUE)
                         .addComponent(jButtonSpeichern)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAbbrechen)))
@@ -169,6 +175,10 @@ public class BenutzerWindow extends javax.swing.JFrame {
     private void jButtonAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbbrechenActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAbbrechenActionPerformed
+
+    private void jButtonSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSpeichernActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSpeichernActionPerformed
 
     /**
      * @param args the command line arguments
