@@ -19,7 +19,6 @@ public class MainWindow extends javax.swing.JFrame {
     Benutzer Benutzer;
     AnsprechpartnerWindow AnsprechpartnerW;
     OrganisationWindow OrganisationW;
-    DataP d = new DataP();
     
     /**
      * Creates new form MainWindow
@@ -29,6 +28,7 @@ public class MainWindow extends javax.swing.JFrame {
         parent = _parent;
         Benutzer = _benutzer;
         setLocationRelativeTo(null);
+        update();
         
         if(!Benutzer.getIsAdmin()) {
             jTabbedPaneMain.setEnabledAt(2, false);
@@ -37,6 +37,16 @@ public class MainWindow extends javax.swing.JFrame {
     
     public MainWindow() {
         initComponents();
+        update();
+    }
+    
+    public final void update()
+    {
+        DataP d = new DataP();
+        jTableProjekte.setModel(d.getProjektModel());
+        jTableAnsprechpartner.setModel(d.getAnsprechpartnerModel());
+        jTableOrganisation.setModel(d.getOrganisationsModel());
+        jTableBenutzer.setModel(d.getBenutzerModel());
     }
     
     /**
@@ -90,7 +100,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTableProjekte.setModel(d.getProjektModel());
+        jTableProjekte.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane1.setViewportView(jTableProjekte);
 
         jButtonProjektNeu.setText("Neu");
@@ -143,7 +160,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel1.setText("Ansprechpartner");
 
-        jTableAnsprechpartner.setModel(d.getAnsprechpartnerModel());
+        jTableAnsprechpartner.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane2.setViewportView(jTableAnsprechpartner);
 
         jButtonAnsprechpartnerNeu.setText("Neu");
@@ -159,7 +183,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         jLabel2.setText("Organisation");
 
-        jTableOrganisation.setModel(d.getOrganisationsModel());
+        jTableOrganisation.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane3.setViewportView(jTableOrganisation);
 
         jButtonOrganisationNeu.setText("Neu");
@@ -233,7 +264,14 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPaneMain.addTab("Ansprechpartner", jPanel2);
 
-        jTableBenutzer.setModel(d.getBenutzerModel());
+        jTableBenutzer.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane4.setViewportView(jTableBenutzer);
 
         jButtonBenutzerNeu.setText("Neu");
@@ -326,7 +364,7 @@ public class MainWindow extends javax.swing.JFrame {
         {
             AnsprechpartnerW.dispose();
         }
-        AnsprechpartnerW = new AnsprechpartnerWindow();
+        AnsprechpartnerW = new AnsprechpartnerWindow(this);
         AnsprechpartnerW.setVisible(true);
     }//GEN-LAST:event_jButtonAnsprechpartnerNeuActionPerformed
 
@@ -335,7 +373,7 @@ public class MainWindow extends javax.swing.JFrame {
         {
             OrganisationW.dispose();
         }
-        OrganisationW = new OrganisationWindow();
+        OrganisationW = new OrganisationWindow(this);
         OrganisationW.setVisible(true);
     }//GEN-LAST:event_jButtonOrganisationNeuActionPerformed
 

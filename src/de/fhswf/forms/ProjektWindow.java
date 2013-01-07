@@ -4,6 +4,10 @@
  */
 package de.fhswf.forms;
 
+import de.fhswf.classes.Ansprechpartner;
+import de.fhswf.database.DataP;
+import java.util.Enumeration;
+
 /**
  *
  * @author Dark
@@ -16,6 +20,13 @@ public class ProjektWindow extends javax.swing.JFrame {
     public ProjektWindow() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        jComboBoxAnsprechpartner.removeAllItems();
+        DataP d = new DataP();
+        for (Enumeration<Ansprechpartner> eo = d.getAllAnsprechpartner().elements(); eo.hasMoreElements();)
+        {
+            jComboBoxAnsprechpartner.addItem(eo.nextElement().getEmail());
+        }
     }
 
     /**

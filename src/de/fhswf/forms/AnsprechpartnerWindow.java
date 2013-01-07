@@ -4,18 +4,49 @@
  */
 package de.fhswf.forms;
 
+import de.fhswf.classes.Ansprechpartner;
+import de.fhswf.classes.Organisation;
+import de.fhswf.database.DataP;
+import java.awt.Color;
+import java.util.Enumeration;
+
 /**
  *
  * @author Dark
  */
 public class AnsprechpartnerWindow extends javax.swing.JFrame {
 
+    MainWindow parent;
+    
+    /**
+     * Creates new form AnsprechpartnerWindow
+     */
+    public AnsprechpartnerWindow(MainWindow _parent) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
+        
+        jComboBoxOrganisation.removeAllItems();
+        DataP d = new DataP();
+        for (Enumeration<Organisation> eo = d.getAllOrganisation().elements(); eo.hasMoreElements();)
+        {
+            jComboBoxOrganisation.addItem(eo.nextElement().getName());
+        }
+    }
+    
     /**
      * Creates new form AnsprechpartnerWindow
      */
     public AnsprechpartnerWindow() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        jComboBoxOrganisation.removeAllItems();
+        DataP d = new DataP();
+        for (Enumeration<Organisation> eo = d.getAllOrganisation().elements(); eo.hasMoreElements();)
+        {
+            jComboBoxOrganisation.addItem(eo.nextElement().getName());
+        }
     }
 
     /**
@@ -40,9 +71,27 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jTextFieldName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNameKeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("Name");
 
+        jTextFieldVorname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldVornameKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Vorname");
+
+        jTextFieldEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldEmailKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Email");
 
@@ -58,6 +107,11 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
         });
 
         jButtonSpeichern.setText("Speichern");
+        jButtonSpeichern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSpeichernActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,8 +170,54 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
 
     private void jButtonAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbbrechenActionPerformed
         this.dispose();
-        setLocationRelativeTo(null);
     }//GEN-LAST:event_jButtonAbbrechenActionPerformed
+
+    private void jButtonSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSpeichernActionPerformed
+        if (!jTextFieldName.getText().equals("") 
+                && !jTextFieldVorname.getText().equals("") 
+                && !jTextFieldEmail.getText().equals("") 
+                && jTextFieldEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"))
+        {
+            DataP d = new DataP();
+            Organisation org = d.getOrganisation(jComboBoxOrganisation.getSelectedItem().toString());
+            Ansprechpartner ansp = new Ansprechpartner(jTextFieldName.getText(), jTextFieldVorname.getText(), jTextFieldEmail.getText(), org);
+            d.saveNewAnsprechpartner(ansp);
+            parent.update();
+            this.dispose();
+        }
+        else
+        {
+            
+            Color lightred = new Color(255,102,102);
+            
+            if (jTextFieldName.getText().equals(""))
+            {
+                jTextFieldName.setBackground(lightred);
+            }
+            
+            if (jTextFieldVorname.getText().equals(""))
+            {
+                jTextFieldVorname.setBackground(lightred);
+            }
+            
+            if (jTextFieldEmail.getText().equals("") || !jTextFieldEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"))
+            {
+                jTextFieldEmail.setBackground(lightred);
+            }
+        }
+    }//GEN-LAST:event_jButtonSpeichernActionPerformed
+
+    private void jTextFieldNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyTyped
+        jTextFieldName.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldNameKeyTyped
+
+    private void jTextFieldVornameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldVornameKeyTyped
+        jTextFieldVorname.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldVornameKeyTyped
+
+    private void jTextFieldEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEmailKeyTyped
+        jTextFieldEmail.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldEmailKeyTyped
 
     /**
      * @param args the command line arguments

@@ -4,12 +4,27 @@
  */
 package de.fhswf.forms;
 
+import de.fhswf.classes.Organisation;
+import de.fhswf.database.DataP;
+import java.awt.Color;
+
 /**
  *
  * @author Dark
  */
 public class OrganisationWindow extends javax.swing.JFrame {
 
+    MainWindow parent;
+    
+    /**
+     * Creates new form OrganisationWindow
+     */
+    public OrganisationWindow(MainWindow _parent) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
+    }
+    
     /**
      * Creates new form OrganisationWindow
      */
@@ -48,6 +63,35 @@ public class OrganisationWindow extends javax.swing.JFrame {
         });
 
         jButtonSpeichern.setText("Speichern");
+        jButtonSpeichern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSpeichernActionPerformed(evt);
+            }
+        });
+
+        jTextFieldName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNameKeyTyped(evt);
+            }
+        });
+
+        jTextFieldAdresse.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldAdresseKeyTyped(evt);
+            }
+        });
+
+        jTextFieldOrt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldOrtKeyTyped(evt);
+            }
+        });
+
+        jTextFieldPostleitzahl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldPostleitzahlKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Name");
 
@@ -119,6 +163,62 @@ public class OrganisationWindow extends javax.swing.JFrame {
     private void jButtonAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbbrechenActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAbbrechenActionPerformed
+
+    private void jButtonSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSpeichernActionPerformed
+        if (!jTextFieldName.getText().equals("") 
+                && !jTextFieldAdresse.getText().equals("")  
+                && !jTextFieldOrt.getText().equals("")
+                && !jTextFieldPostleitzahl.getText().equals("") 
+                && jTextFieldPostleitzahl.getText().matches("^[0-9]{5}$"))
+        {
+            DataP d = new DataP();
+            Organisation org = new Organisation(jTextFieldName.getText(), jTextFieldAdresse.getText(), jTextFieldOrt.getText(), jTextFieldPostleitzahl.getText());
+            d.saveNewOrganisation(org);
+            parent.update();
+            this.dispose();
+        }
+        else
+        {
+            
+            Color lightred = new Color(255,102,102);
+            
+            if (jTextFieldName.getText().equals(""))
+            {
+                jTextFieldName.setBackground(lightred);
+            }
+            
+            if (jTextFieldAdresse.getText().equals(""))
+            {
+                jTextFieldAdresse.setBackground(lightred);
+            }
+            
+            if (jTextFieldOrt.getText().equals(""))
+            {
+                jTextFieldOrt.setBackground(lightred);
+            }
+            
+            if (jTextFieldPostleitzahl.getText().equals("") || !jTextFieldPostleitzahl.getText().matches("^[0-9]{5}$"))
+            {
+                jTextFieldPostleitzahl.setBackground(lightred);
+            }
+        }
+    }//GEN-LAST:event_jButtonSpeichernActionPerformed
+
+    private void jTextFieldNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyTyped
+        jTextFieldName.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldNameKeyTyped
+
+    private void jTextFieldAdresseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldAdresseKeyTyped
+        jTextFieldAdresse.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldAdresseKeyTyped
+
+    private void jTextFieldOrtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldOrtKeyTyped
+        jTextFieldOrt.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldOrtKeyTyped
+
+    private void jTextFieldPostleitzahlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPostleitzahlKeyTyped
+        jTextFieldPostleitzahl.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldPostleitzahlKeyTyped
 
     /**
      * @param args the command line arguments

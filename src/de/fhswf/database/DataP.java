@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung5";
+    private static final String DataBaseFileName = "projektverwaltung";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
 
@@ -405,7 +405,7 @@ public class DataP
         
     public void saveNewOrganisation(Organisation o)
     {
-        String query = "INSERT INTO organisation(o_name, o_adresse, o_plz, o_ort) VALUES(";
+        String query = "INSERT INTO organisation(o_name, o_adresse, o_postleitzahl, o_ort) VALUES(";
         query += "'" + o.getName() + "',";
         query += "'" + o.getAdresse() + "',";
         query += "'" + o.getOrt() + "',";
