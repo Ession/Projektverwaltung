@@ -4,6 +4,8 @@
  */
 package de.fhswf.forms;
 
+import de.fhswf.database.DataP;
+
 /**
  *
  * @author Dark
@@ -27,6 +29,14 @@ public class MainWindow extends javax.swing.JFrame {
     
     public MainWindow() {
         initComponents();
+        update();
+    }
+    
+    public final void update()
+    {
+        DataP d = new DataP();
+        jTableAnsprechpartner.setModel(d.getAnsprechpartnerModel());
+        jTableOrganisation.setModel(d.getOrganisationsModel());
     }
 
     /**

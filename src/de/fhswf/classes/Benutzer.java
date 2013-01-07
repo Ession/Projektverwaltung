@@ -17,8 +17,9 @@ public class Benutzer {
     private String Adresse;
     private String Ort;
     private String Postleitzahl;
+    private boolean IsAdmin;
 
-    public Benutzer(String sName, String sVorname, String sPasswordHash, String sEmail, String sTelefon, String sAdresse, String sOrt, String sPostleitzahl) { 
+    public Benutzer(String sName, String sVorname, String sPasswordHash, String sEmail, String sTelefon, String sAdresse, String sOrt, String sPostleitzahl, boolean bIsAdmin) { 
         Name = sName;
         Vorname = sVorname;
         PasswordHash = sPasswordHash;
@@ -26,7 +27,8 @@ public class Benutzer {
         Telefon = sTelefon;
         Adresse = sAdresse;
         Ort = sOrt;
-        Postleitzahl = sPostleitzahl;    
+        Postleitzahl = sPostleitzahl;
+        IsAdmin = bIsAdmin;
     }
     
     /**
@@ -139,6 +141,20 @@ public class Benutzer {
      */
     public void setPostleitzahl(String Postleitzahl) {
         this.Postleitzahl = Postleitzahl;
+    }
+
+    /**
+     * @return the IsAdmin
+     */
+    public boolean getIsAdmin() {
+        return IsAdmin;
+    }
+
+    /**
+     * @param IsAdmin the IsAdmin to set
+     */
+    public void setIsAdmin(boolean IsAdmin) {
+        this.IsAdmin = IsAdmin;
     }
     
 }
