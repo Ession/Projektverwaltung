@@ -351,7 +351,7 @@ public class MainWindow extends javax.swing.JFrame {
         {
             ProjektW.dispose();
         }
-        ProjektW = new ProjektWindow();
+        ProjektW = new ProjektWindow(this);
         ProjektW.setVisible(true);
     }//GEN-LAST:event_jButtonProjektNeuActionPerformed
 

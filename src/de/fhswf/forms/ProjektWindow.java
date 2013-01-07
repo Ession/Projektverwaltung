@@ -354,7 +354,7 @@ public class ProjektWindow extends javax.swing.JFrame {
         {
             TeilnehmerW.dispose();
         }
-        TeilnehmerW = new TeilnehmerWindow(this, Benutzer);
+        TeilnehmerW = new TeilnehmerWindow(this);
         TeilnehmerW.setVisible(true);
     }//GEN-LAST:event_jButtonTeilnehmerHinzufuegenActionPerformed
 

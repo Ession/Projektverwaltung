@@ -244,10 +244,23 @@ public class DataP
         query += "'" + p.getKurzbeschreibung() + "',";
         query += "'" + p.getBeschreibung() + "',";
         query += "'" + p.getSkizze() + "',";
-        query += "'" + p.getAnsprechpartner() + "',";
-        query += "'" + p.getTeilnehmer()[0] + "',";
-        query += "'" + p.getTeilnehmer()[1] + "',";
-        query += "'" + p.getTeilnehmer()[2] + "',";
+        query += "'" + p.getAnsprechpartner().getEmail() + "',";
+        query += "'" + p.getTeilnehmer()[0].getEmail() + "',";
+        
+        if (p.getTeilnehmer()[1] == null) {
+            query += "'',";            
+        }
+        else {
+            query += "'" + p.getTeilnehmer()[1].getEmail() + "',";
+        }
+        
+        if (p.getTeilnehmer()[2] == null) {
+            query += "'',";            
+        }
+        else {
+            query += "'" + p.getTeilnehmer()[2].getEmail() + "',";
+        }
+        
         query += "'" + p.getVortrag1() + "',";
         query += "'" + p.getVortrag2() + "'";
         query += ")";
