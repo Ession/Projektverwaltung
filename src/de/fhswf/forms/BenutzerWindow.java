@@ -47,7 +47,7 @@ public class BenutzerWindow extends javax.swing.JFrame {
         jButtonAbbrechen = new javax.swing.JButton();
         jButtonSpeichern = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jLabel1.setText("Name");
