@@ -4,6 +4,10 @@
  */
 package de.fhswf.forms;
 
+import de.fhswf.classes.Benutzer;
+import de.fhswf.database.DataP;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dark
@@ -117,13 +121,29 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAbbrechenActionPerformed
 
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
-        if (MainW != null)
-        {
-            MainW.dispose();
+        DataP d = new DataP();
+        String email = jTextFieldEmail.getText();
+        String password = new String(jPasswordFieldPasswort.getPassword());
+        Benutzer benutzer = d.getBenutzer(jTextFieldEmail.getText());
+        
+        if(benutzer == null) {
+            JOptionPane.showMessageDialog(this, "Der angegebene Benutzer existiert nicht.", "Login Error", JOptionPane.ERROR_MESSAGE);
         }
-        MainW = new MainWindow(this);
-        MainW.setVisible(true);
-        this.setVisible(false);
+        else {
+            if(benutzer.getPasswordHash().equals(password)) {
+                //Passwort ist richtig
+                if(MainW != null)
+                {
+                    MainW.dispose();
+                }
+                MainW = new MainWindow(this);
+                MainW.setVisible(true);
+                this.setVisible(false);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Das eingegebe Passwort ist nicht korrekt.", "Login Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonRegistrierenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrierenActionPerformed
