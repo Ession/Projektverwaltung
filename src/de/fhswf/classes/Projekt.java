@@ -37,10 +37,9 @@ public class Projekt {
         Ansprechpartner = aAnsprechpartner;
         Teilnehmer = bTeilnehmer;
         Vortrag1 = sVortrag1;
-        Vortrag2 = sVortrag2;
-        
+        Vortrag2 = sVortrag2;        
     }
-
+    
     /**
      * @return the Titel
      */

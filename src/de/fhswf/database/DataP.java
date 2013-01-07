@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung";
+    private static final String DataBaseFileName = "projektverwaltung4";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
 

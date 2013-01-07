@@ -52,8 +52,8 @@
                           <Component id="jScrollPane3" max="32767" attributes="0"/>
                           <Component id="jComboBoxAnsprechpartner" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="161" max="32767" attributes="0"/>
+                              <Component id="jLabelTeilnehmer" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="349" max="32767" attributes="0"/>
                               <Component id="jButtonTeilnehmerHinzufuegen" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jTextFieldVortrag1" alignment="0" max="32767" attributes="0"/>
@@ -107,7 +107,7 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelTeilnehmer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonTeilnehmerHinzufuegen" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -137,6 +137,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldTitel">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldTitelKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -145,7 +148,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldFach">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldFachActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldFachKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -165,6 +168,9 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextAreaKurzbeschreibungKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -185,6 +191,9 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextAreaBeschreibungKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -205,6 +214,9 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextAreaSkizzeKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -230,15 +242,15 @@
         <Property name="text" type="java.lang.String" value="Teilnehmer"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Teilnehmer1, Teilnehmer2, Teilnehmer3"/>
-      </Properties>
+    <Component class="javax.swing.JLabel" name="jLabelTeilnehmer">
     </Component>
     <Component class="javax.swing.JButton" name="jButtonTeilnehmerHinzufuegen">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hinzuf&#xfc;gen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonTeilnehmerHinzufuegenActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -266,6 +278,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Speichern"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSpeichernActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

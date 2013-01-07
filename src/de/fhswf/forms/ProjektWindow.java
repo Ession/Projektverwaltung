@@ -5,8 +5,12 @@
 package de.fhswf.forms;
 
 import de.fhswf.classes.Ansprechpartner;
+import de.fhswf.classes.Benutzer;
+import de.fhswf.classes.Projekt;
 import de.fhswf.database.DataP;
+import java.awt.Color;
 import java.util.Enumeration;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +18,26 @@ import java.util.Enumeration;
  */
 public class ProjektWindow extends javax.swing.JFrame {
 
+    MainWindow parent;
+    TeilnehmerWindow TeilnehmerW;
+    Benutzer[] Benutzer;
+    
+    /**
+     * Creates new form ProjektWindow
+     */
+    public ProjektWindow(MainWindow _parent) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
+        
+        jComboBoxAnsprechpartner.removeAllItems();
+        DataP d = new DataP();
+        for (Enumeration<Ansprechpartner> eo = d.getAllAnsprechpartner().elements(); eo.hasMoreElements();)
+        {
+            jComboBoxAnsprechpartner.addItem(eo.nextElement().getEmail());
+        }
+    }
+    
     /**
      * Creates new form ProjektWindow
      */
@@ -26,6 +50,20 @@ public class ProjektWindow extends javax.swing.JFrame {
         for (Enumeration<Ansprechpartner> eo = d.getAllAnsprechpartner().elements(); eo.hasMoreElements();)
         {
             jComboBoxAnsprechpartner.addItem(eo.nextElement().getEmail());
+        }
+    }
+    
+    public void SetBenutzer(Benutzer[] _benutzer) {
+        Benutzer = _benutzer;
+        
+        jLabelTeilnehmer.setText(Benutzer[0].getName());
+        
+        if (Benutzer[1] != null) {
+            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + ", " + Benutzer[1].getName());
+        }
+        
+        if (Benutzer[2] != null) {
+            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + ", " + Benutzer[2].getName());
         }
     }
 
@@ -54,7 +92,7 @@ public class ProjektWindow extends javax.swing.JFrame {
         jComboBoxAnsprechpartner = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        jLabelTeilnehmer = new javax.swing.JLabel();
         jButtonTeilnehmerHinzufuegen = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldVortrag1 = new javax.swing.JTextField();
@@ -69,11 +107,17 @@ public class ProjektWindow extends javax.swing.JFrame {
 
         jLabel1.setText("Titel");
 
+        jTextFieldTitel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldTitelKeyTyped(evt);
+            }
+        });
+
         jLabel2.setText("Fach");
 
-        jTextFieldFach.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFachActionPerformed(evt);
+        jTextFieldFach.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldFachKeyTyped(evt);
             }
         });
 
@@ -81,18 +125,33 @@ public class ProjektWindow extends javax.swing.JFrame {
 
         jTextAreaKurzbeschreibung.setColumns(20);
         jTextAreaKurzbeschreibung.setRows(3);
+        jTextAreaKurzbeschreibung.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextAreaKurzbeschreibungKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextAreaKurzbeschreibung);
 
         jLabel4.setText("Beschreibung");
 
         jTextAreaBeschreibung.setColumns(20);
         jTextAreaBeschreibung.setRows(5);
+        jTextAreaBeschreibung.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextAreaBeschreibungKeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTextAreaBeschreibung);
 
         jLabel5.setText("Skizze");
 
         jTextAreaSkizze.setColumns(20);
         jTextAreaSkizze.setRows(3);
+        jTextAreaSkizze.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextAreaSkizzeKeyTyped(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTextAreaSkizze);
 
         jComboBoxAnsprechpartner.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -101,9 +160,12 @@ public class ProjektWindow extends javax.swing.JFrame {
 
         jLabel7.setText("Teilnehmer");
 
-        jLabel8.setText("Teilnehmer1, Teilnehmer2, Teilnehmer3");
-
         jButtonTeilnehmerHinzufuegen.setText("Hinzufügen");
+        jButtonTeilnehmerHinzufuegen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonTeilnehmerHinzufuegenActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Vortrag 1");
 
@@ -117,6 +179,11 @@ public class ProjektWindow extends javax.swing.JFrame {
         });
 
         jButtonSpeichern.setText("Speichern");
+        jButtonSpeichern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSpeichernActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,8 +212,8 @@ public class ProjektWindow extends javax.swing.JFrame {
                             .addComponent(jScrollPane3)
                             .addComponent(jComboBoxAnsprechpartner, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                                .addComponent(jLabelTeilnehmer)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
                                 .addComponent(jButtonTeilnehmerHinzufuegen))
                             .addComponent(jTextFieldVortrag1)
                             .addComponent(jTextFieldVortrag2)))
@@ -187,7 +254,7 @@ public class ProjektWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8)
+                    .addComponent(jLabelTeilnehmer)
                     .addComponent(jButtonTeilnehmerHinzufuegen))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,13 +274,89 @@ public class ProjektWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldFachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFachActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldFachActionPerformed
-
     private void jButtonAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbbrechenActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAbbrechenActionPerformed
+
+    private void jButtonSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSpeichernActionPerformed
+        if (!jTextFieldTitel.getText().equals("") 
+                && !jTextFieldFach.getText().equals("")  
+                && !jTextAreaKurzbeschreibung.getText().equals("")
+                && !jTextAreaBeschreibung.getText().equals("")
+                && !jTextAreaSkizze.getText().equals(""))
+        {
+            if (Benutzer == null) {
+                JOptionPane.showMessageDialog(this, "Es muss mindestens ein Teilnehmer hinzugefügt werden.", "Teilnehmer", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                DataP d = new DataP();
+                Ansprechpartner ansp = d.getAnsprechpartner(jComboBoxAnsprechpartner.getSelectedItem().toString());
+                Projekt proj = new Projekt(jTextFieldTitel.getText(), jTextFieldFach.getText(), jTextAreaKurzbeschreibung.getText(), jTextAreaBeschreibung.getText(), jTextAreaSkizze.getText(), ansp, Benutzer, jTextFieldVortrag1.getText(), jTextFieldVortrag2.getText());
+                d.saveNewProjekt(proj);
+                parent.update();
+                this.dispose();
+            }
+        }
+        else
+        {
+            
+            Color lightred = new Color(255,102,102);
+            
+            if (jTextFieldTitel.getText().equals(""))
+            {
+                jTextFieldTitel.setBackground(lightred);
+            }
+            
+            if (jTextFieldFach.getText().equals(""))
+            {
+                jTextFieldFach.setBackground(lightred);
+            }
+            
+            if (jTextAreaKurzbeschreibung.getText().equals(""))
+            {
+                jTextAreaKurzbeschreibung.setBackground(lightred);
+            }
+            
+            if (jTextAreaBeschreibung.getText().equals(""))
+            {
+                jTextAreaBeschreibung.setBackground(lightred);
+            }
+            
+            if (jTextAreaSkizze.getText().equals(""))
+            {
+                jTextAreaSkizze.setBackground(lightred);
+            }
+        }
+    }//GEN-LAST:event_jButtonSpeichernActionPerformed
+
+    private void jTextFieldTitelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTitelKeyTyped
+        jTextFieldTitel.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldTitelKeyTyped
+
+    private void jTextFieldFachKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFachKeyTyped
+        jTextFieldFach.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldFachKeyTyped
+
+    private void jTextAreaKurzbeschreibungKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaKurzbeschreibungKeyTyped
+        jTextAreaKurzbeschreibung.setBackground(Color.white);
+    }//GEN-LAST:event_jTextAreaKurzbeschreibungKeyTyped
+
+    private void jTextAreaBeschreibungKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaBeschreibungKeyTyped
+        jTextAreaBeschreibung.setBackground(Color.white);
+    }//GEN-LAST:event_jTextAreaBeschreibungKeyTyped
+
+    private void jTextAreaSkizzeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaSkizzeKeyTyped
+        jTextAreaSkizze.setBackground(Color.white);
+    }//GEN-LAST:event_jTextAreaSkizzeKeyTyped
+
+    private void jButtonTeilnehmerHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTeilnehmerHinzufuegenActionPerformed
+        if (TeilnehmerW != null)
+        {
+            TeilnehmerW.dispose();
+        }
+        TeilnehmerW = new TeilnehmerWindow(this, Benutzer);
+        TeilnehmerW.setVisible(true);
+    }//GEN-LAST:event_jButtonTeilnehmerHinzufuegenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,8 +405,8 @@ public class ProjektWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelTeilnehmer;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
