@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung4";
+    private static final String DataBaseFileName = "projektverwaltung3";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
 
@@ -233,7 +233,6 @@ public class DataP
         header.add("Postleitzahl");
         header.add("Admin");
         return new model(tabellenVector, header);
-
     }
 
     public void deleteBenutzer(String sEmail)
@@ -358,12 +357,30 @@ public class DataP
         
     public void saveNewAnsprechpartner(Ansprechpartner a)
     {
-        String query = "INSERT INTO ansprechpartner(a_name, a_vorname,a_email, a_organisation) VALUES(";
+        String query = "INSERT INTO ansprechpartner(a_name, a_vorname, a_email, a_organisation) VALUES(";
         query += "'" + a.getName() + "',";
         query += "'" + a.getVorname() + "',";
         query += "'" + a.getEmail() + "',";
         query += "'" + a.getOrganisation().getName() + "'";
         query += ")";
+        try
+        {
+            dataBase.update(query);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+    public void updateAnsprechpartner(String sOldEmail, Ansprechpartner a)
+    {
+        String query = "UPDATE ansprechpartner "
+                + "SET a_name='" + a.getName() + "',"
+                + "a_vorname='" + a.getVorname() + "',"
+                + "a_email='" + a.getEmail() + "',"
+                + "a_organisation='" + a.getOrganisation().getName() + "' "
+                + "WHERE a_email='" + sOldEmail + "'";
         try
         {
             dataBase.update(query);
@@ -460,6 +477,24 @@ public class DataP
         query += "'" + o.getOrt() + "',";
         query += "'" + o.getPostleitzahl() + "'";
         query += ")";
+        try
+        {
+            dataBase.update(query);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+    public void updateOrganisation(String sOldName, Organisation o)
+    {
+        String query = "UPDATE organisation "
+                + "SET o_name='" + o.getName() + "',"
+                + "o_adresse='" + o.getAdresse() + "',"
+                + "o_ort='" + o.getOrt() + "',"
+                + "o_postleitzahl='" + o.getPostleitzahl() + "' "
+                + "WHERE o_name='" + sOldName + "'";
         try
         {
             dataBase.update(query);

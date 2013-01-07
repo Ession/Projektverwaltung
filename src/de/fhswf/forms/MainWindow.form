@@ -274,6 +274,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bearbeiten"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAnsprechpartnerBearbeitenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonAnsprechpartnerLoeschen">
               <Properties>
@@ -324,6 +327,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bearbeiten"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOrganisationBearbeitenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonOrganisationLoeschen">
               <Properties>
@@ -415,6 +421,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bearbeiten"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBenutzerBearbeitenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonBenutzerLoeschen">
               <Properties>

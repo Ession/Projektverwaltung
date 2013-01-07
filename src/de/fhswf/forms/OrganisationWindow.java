@@ -15,6 +15,8 @@ import java.awt.Color;
 public class OrganisationWindow extends javax.swing.JFrame {
 
     MainWindow parent;
+    Organisation organisation;
+    boolean editMode;
     
     /**
      * Creates new form OrganisationWindow
@@ -23,6 +25,24 @@ public class OrganisationWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         parent = _parent;
+        editMode = false;
+    }
+    
+    /**
+     * Creates new form OrganisationWindow
+     */
+    public OrganisationWindow(MainWindow _parent, Organisation _org) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
+        organisation = _org;
+        
+        jTextFieldName.setText(organisation.getName());
+        jTextFieldAdresse.setText(organisation.getAdresse());
+        jTextFieldOrt.setText(organisation.getOrt());
+        jTextFieldPostleitzahl.setText(organisation.getPostleitzahl());
+        
+        editMode = true;
     }
     
     /**
@@ -31,6 +51,7 @@ public class OrganisationWindow extends javax.swing.JFrame {
     public OrganisationWindow() {
         initComponents();
         setLocationRelativeTo(null);
+        editMode = false;
     }
 
     /**
@@ -173,7 +194,14 @@ public class OrganisationWindow extends javax.swing.JFrame {
         {
             DataP d = new DataP();
             Organisation org = new Organisation(jTextFieldName.getText(), jTextFieldAdresse.getText(), jTextFieldOrt.getText(), jTextFieldPostleitzahl.getText());
-            d.saveNewOrganisation(org);
+            
+            if (editMode) {
+                d.updateOrganisation(organisation.getName(), org);
+            }
+            else {
+                d.saveNewOrganisation(org);
+            }
+            
             parent.update();
             this.dispose();
         }

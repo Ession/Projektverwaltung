@@ -17,6 +17,8 @@ import java.util.Enumeration;
 public class AnsprechpartnerWindow extends javax.swing.JFrame {
 
     MainWindow parent;
+    Ansprechpartner ansprechpartner;
+    boolean editMode;
     
     /**
      * Creates new form AnsprechpartnerWindow
@@ -25,6 +27,7 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         parent = _parent;
+        editMode = false;
         
         jComboBoxOrganisation.removeAllItems();
         DataP d = new DataP();
@@ -37,9 +40,34 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
     /**
      * Creates new form AnsprechpartnerWindow
      */
+    public AnsprechpartnerWindow(MainWindow _parent, Ansprechpartner _ansprechpartner) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
+        ansprechpartner = _ansprechpartner;
+        
+        jComboBoxOrganisation.removeAllItems();
+        DataP d = new DataP();
+        for (Enumeration<Organisation> eo = d.getAllOrganisation().elements(); eo.hasMoreElements();)
+        {
+            jComboBoxOrganisation.addItem(eo.nextElement().getName());
+        }
+        
+        jTextFieldName.setText(ansprechpartner.getName());
+        jTextFieldVorname.setText(ansprechpartner.getVorname());
+        jTextFieldEmail.setText(ansprechpartner.getEmail());
+        jComboBoxOrganisation.setSelectedItem(ansprechpartner.getOrganisation().getName());
+        
+        editMode = true;
+    }
+    
+    /**
+     * Creates new form AnsprechpartnerWindow
+     */
     public AnsprechpartnerWindow() {
         initComponents();
         setLocationRelativeTo(null);
+        editMode = false;
         
         jComboBoxOrganisation.removeAllItems();
         DataP d = new DataP();
@@ -181,7 +209,14 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
             DataP d = new DataP();
             Organisation org = d.getOrganisation(jComboBoxOrganisation.getSelectedItem().toString());
             Ansprechpartner ansp = new Ansprechpartner(jTextFieldName.getText(), jTextFieldVorname.getText(), jTextFieldEmail.getText(), org);
-            d.saveNewAnsprechpartner(ansp);
+            
+            if (editMode) {
+                d.updateAnsprechpartner(ansprechpartner.getEmail(), ansp);
+            }
+            else {
+                d.saveNewAnsprechpartner(ansp);
+            }
+            
             parent.update();
             this.dispose();
         }

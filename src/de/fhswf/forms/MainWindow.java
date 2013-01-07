@@ -183,6 +183,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButtonAnsprechpartnerBearbeiten.setText("Bearbeiten");
+        jButtonAnsprechpartnerBearbeiten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnsprechpartnerBearbeitenActionPerformed(evt);
+            }
+        });
 
         jButtonAnsprechpartnerLoeschen.setText("Löschen");
         jButtonAnsprechpartnerLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +216,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButtonOrganisationBearbeiten.setText("Bearbeiten");
+        jButtonOrganisationBearbeiten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrganisationBearbeitenActionPerformed(evt);
+            }
+        });
 
         jButtonOrganisationLoeschen.setText("Löschen");
         jButtonOrganisationLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +307,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButtonBenutzerBearbeiten.setText("Bearbeiten");
+        jButtonBenutzerBearbeiten.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBenutzerBearbeitenActionPerformed(evt);
+            }
+        });
 
         jButtonBenutzerLoeschen.setText("Löschen");
         jButtonBenutzerLoeschen.addActionListener(new java.awt.event.ActionListener() {
@@ -375,10 +390,6 @@ public class MainWindow extends javax.swing.JFrame {
         ProjektW.setVisible(true);
     }//GEN-LAST:event_jButtonProjektNeuActionPerformed
 
-    private void jButtonProjektBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProjektBearbeitenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonProjektBearbeitenActionPerformed
-
     private void jButtonAnsprechpartnerNeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnsprechpartnerNeuActionPerformed
         if (AnsprechpartnerW != null)
         {
@@ -420,6 +431,36 @@ public class MainWindow extends javax.swing.JFrame {
         d.deleteBenutzer(jTableBenutzer.getValueAt(jTableBenutzer.getSelectedRow(), 1).toString());     
         update();
     }//GEN-LAST:event_jButtonBenutzerLoeschenActionPerformed
+
+    private void jButtonAnsprechpartnerBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnsprechpartnerBearbeitenActionPerformed
+        DataP d = new DataP();
+        
+        if (AnsprechpartnerW != null)
+        {
+            AnsprechpartnerW.dispose();
+        }
+        AnsprechpartnerW = new AnsprechpartnerWindow(this, d.getAnsprechpartner(jTableAnsprechpartner.getValueAt(jTableAnsprechpartner.getSelectedRow(), 1).toString()));
+        AnsprechpartnerW.setVisible(true);
+    }//GEN-LAST:event_jButtonAnsprechpartnerBearbeitenActionPerformed
+
+    private void jButtonOrganisationBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrganisationBearbeitenActionPerformed
+        DataP d = new DataP();
+        
+        if (OrganisationW != null)
+        {
+            OrganisationW.dispose();
+        }
+        OrganisationW = new OrganisationWindow(this, d.getOrganisation(jTableOrganisation.getValueAt(jTableOrganisation.getSelectedRow(), 0).toString()));
+        OrganisationW.setVisible(true);
+    }//GEN-LAST:event_jButtonOrganisationBearbeitenActionPerformed
+
+    private void jButtonProjektBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProjektBearbeitenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonProjektBearbeitenActionPerformed
+
+    private void jButtonBenutzerBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBenutzerBearbeitenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBenutzerBearbeitenActionPerformed
 
     /**
      * @param args the command line arguments
