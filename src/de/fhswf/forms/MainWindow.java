@@ -455,11 +455,25 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonOrganisationBearbeitenActionPerformed
 
     private void jButtonProjektBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProjektBearbeitenActionPerformed
-        // TODO add your handling code here:
+        DataP d = new DataP();
+        
+        if (ProjektW != null)
+        {
+            ProjektW.dispose();
+        }
+        ProjektW = new ProjektWindow(this, d.getProjekt(jTableProjekte.getValueAt(jTableProjekte.getSelectedRow(), 0).toString()));
+        ProjektW.setVisible(true);
     }//GEN-LAST:event_jButtonProjektBearbeitenActionPerformed
 
     private void jButtonBenutzerBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBenutzerBearbeitenActionPerformed
-        // TODO add your handling code here:
+        DataP d = new DataP();
+        
+        if (BenutzerW != null)
+        {
+            BenutzerW.dispose();
+        }
+        BenutzerW = new BenutzerWindow(this, d.getBenutzer(jTableBenutzer.getValueAt(jTableBenutzer.getSelectedRow(), 1).toString()));
+        BenutzerW.setVisible(true);
     }//GEN-LAST:event_jButtonBenutzerBearbeitenActionPerformed
 
     /**

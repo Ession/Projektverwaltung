@@ -20,7 +20,38 @@ public class ProjektWindow extends javax.swing.JFrame {
 
     MainWindow parent;
     TeilnehmerWindow TeilnehmerW;
+    Projekt projekt;
     Benutzer[] Benutzer;
+    boolean editMode;
+    
+    /**
+     * Creates new form ProjektWindow
+     */
+    public ProjektWindow(MainWindow _parent, Projekt _projekt) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
+        projekt = _projekt;
+        
+        jComboBoxAnsprechpartner.removeAllItems();
+        DataP d = new DataP();
+        for (Enumeration<Ansprechpartner> eo = d.getAllAnsprechpartner().elements(); eo.hasMoreElements();)
+        {
+            jComboBoxAnsprechpartner.addItem(eo.nextElement().getEmail());
+        }
+        
+        jTextFieldTitel.setText(projekt.getTitel());
+        jTextFieldFach.setText(projekt.getFach());
+        jTextAreaKurzbeschreibung.setText(projekt.getKurzbeschreibung());
+        jTextAreaBeschreibung.setText(projekt.getBeschreibung());
+        jTextAreaSkizze.setText(projekt.getSkizze());
+        jComboBoxAnsprechpartner.setSelectedItem(projekt.getAnsprechpartner().getEmail());
+        jTextFieldVortrag1.setText(projekt.getVortrag1());
+        jTextFieldVortrag2.setText(projekt.getVortrag2());
+        SetBenutzer(projekt.getTeilnehmer());
+        
+        editMode = true;
+    }
     
     /**
      * Creates new form ProjektWindow
@@ -29,6 +60,7 @@ public class ProjektWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         parent = _parent;
+        editMode = false;
         
         jComboBoxAnsprechpartner.removeAllItems();
         DataP d = new DataP();
@@ -44,6 +76,7 @@ public class ProjektWindow extends javax.swing.JFrame {
     public ProjektWindow() {
         initComponents();
         setLocationRelativeTo(null);
+        editMode = false;
         
         jComboBoxAnsprechpartner.removeAllItems();
         DataP d = new DataP();
@@ -292,7 +325,14 @@ public class ProjektWindow extends javax.swing.JFrame {
                 DataP d = new DataP();
                 Ansprechpartner ansp = d.getAnsprechpartner(jComboBoxAnsprechpartner.getSelectedItem().toString());
                 Projekt proj = new Projekt(jTextFieldTitel.getText(), jTextFieldFach.getText(), jTextAreaKurzbeschreibung.getText(), jTextAreaBeschreibung.getText(), jTextAreaSkizze.getText(), ansp, Benutzer, jTextFieldVortrag1.getText(), jTextFieldVortrag2.getText());
-                d.saveNewProjekt(proj);
+                
+                if (editMode) {
+                    d.updateProjekt(projekt.getTitel(), proj);
+                }
+                else {
+                    d.saveNewProjekt(proj);
+                }
+                
                 parent.update();
                 this.dispose();
             }

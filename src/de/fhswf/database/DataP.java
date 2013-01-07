@@ -157,6 +157,43 @@ public class DataP
             Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+        
+    public void updateBenutzer(String sOldEmail, Benutzer b, boolean NewPW)
+    {
+        String query;
+        if (NewPW) {
+            query = "UPDATE benutzer "
+                + "SET b_name='" + b.getName() + "',"
+                + "b_vorname='" + b.getVorname() + "',"
+                + "b_passwordhash='" + b.getPasswordHash() + "',"
+                + "b_email='" + b.getEmail() + "',"
+                + "b_telefon='" + b.getTelefon() + "',"
+                + "b_adresse='" + b.getAdresse() + "',"
+                + "b_ort='" + b.getOrt() + "',"
+                + "b_postleitzahl='" + b.getPostleitzahl() + "'"
+                + " WHERE b_email='" + sOldEmail + "'";
+        }
+        else {
+            query = "UPDATE benutzer "
+                + "SET b_name='" + b.getName() + "',"
+                + "b_vorname='" + b.getVorname() + "',"
+                + "b_email='" + b.getEmail() + "',"
+                + "b_telefon='" + b.getTelefon() + "',"
+                + "b_adresse='" + b.getAdresse() + "',"
+                + "b_ort='" + b.getOrt() + "',"
+                + "b_postleitzahl='" + b.getPostleitzahl() + "'"
+                + " WHERE b_email='" + sOldEmail + "'";
+        }
+        
+        try
+        {
+            dataBase.update(query);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public Benutzer getBenutzer(String email)
     {
@@ -275,6 +312,65 @@ public class DataP
         query += "'" + p.getVortrag1() + "',";
         query += "'" + p.getVortrag2() + "'";
         query += ")";
+        try
+        {
+            dataBase.update(query);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public Projekt getProjekt(String titel)
+    {
+        try
+        {
+            ResultSet rs = dataBase.query("Select * from projekt where p_titel  = '" + titel + "'");
+            if (rs.next())
+            {
+                Ansprechpartner ansp = getAnsprechpartner(rs.getString("p_ansprechpartner"));
+                Benutzer[] benu = new Benutzer[3];
+                benu[0] = getBenutzer(rs.getString("p_teilnehmer1"));
+                benu[1] = getBenutzer(rs.getString("p_teilnehmer2"));
+                benu[2] = getBenutzer(rs.getString("p_teilnehmer2"));
+                return new Projekt(rs.getString("p_titel"), rs.getString("p_fach"), rs.getString("p_kurzbeschreibung"), rs.getString("p_beschreibung"), rs.getString("p_skizze"), ansp, benu, rs.getString("p_vortrag1"), rs.getString("p_vortrag2"));
+            }
+            else
+            {
+                return null;
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+        
+    public void updateProjekt(String sOldTitel, Projekt p)
+    {
+        String query = "UPDATE projekt "
+                + "SET p_titel='" + p.getTitel() + "',"
+                + "p_fach='" + p.getFach() + "',"
+                + "p_kurzbeschreibung='" + p.getKurzbeschreibung() + "',"
+                + "p_beschreibung='" + p.getBeschreibung() + "',"
+                + "p_skizze='" + p.getSkizze() + "',"
+                + "p_ansprechpartner='" + p.getAnsprechpartner().getEmail() + "',"
+                + "p_teilnehmer1='" + p.getTeilnehmer()[0].getEmail() + "',";
+        
+                if (p.getTeilnehmer()[1] != null) {
+                    query += "p_teilnehmer2='" + p.getTeilnehmer()[1].getEmail() + "',";
+                }
+                
+                if (p.getTeilnehmer()[2] != null) {
+                    query += "p_teilnehmer3='" + p.getTeilnehmer()[1].getEmail() + "',";
+                }
+                
+         query += "p_vortrag1='" + p.getVortrag1() + "',"
+                + "p_vortrag2='" + p.getVortrag2() + "' "
+                + "WHERE p_titel='" + sOldTitel + "'";
         try
         {
             dataBase.update(query);

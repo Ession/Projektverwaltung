@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 public class BenutzerWindow extends javax.swing.JFrame {
 
     MainWindow parent;
+    Benutzer benutzer;
+    boolean editMode;
     
     /**
      * Creates new form BenutzerWindow
@@ -23,6 +25,7 @@ public class BenutzerWindow extends javax.swing.JFrame {
     public BenutzerWindow() {
         initComponents();
         setLocationRelativeTo(null);
+        editMode = false;
     }
     
     /**
@@ -32,6 +35,27 @@ public class BenutzerWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         parent = _parent;
+        editMode = false;
+    }
+    
+    /**
+     * Creates new form BenutzerWindow
+     */
+    public BenutzerWindow(MainWindow _parent, Benutzer _benutzer) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
+        benutzer = _benutzer;
+                
+        jTextFieldName.setText(benutzer.getName());
+        jTextFieldVorname.setText(benutzer.getVorname());
+        jTextFieldEmail.setText(benutzer.getEmail());
+        jTextFieldTelefon.setText(benutzer.getTelefon());
+        jTextFieldAdresse.setText(benutzer.getAdresse());
+        jTextFieldOrt.setText(benutzer.getOrt());
+        jTextFieldPostleitzahl.setText(benutzer.getPostleitzahl());
+        
+        editMode = true;
     }
 
     /**
@@ -219,17 +243,15 @@ public class BenutzerWindow extends javax.swing.JFrame {
         
         if (!jTextFieldName.getText().equals("") 
                 && !jTextFieldVorname.getText().equals("") 
-                && !jTextFieldEmail.getText().equals("") 
-                && !passwort1.equals("") 
-                && !passwort2.equals("") 
+                && !jTextFieldEmail.getText().equals("")
                 && jTextFieldEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"))
         {
-            if ( !passwort1.equals(passwort2)) {
+            if (!passwort1.equals(passwort2) && !editMode) {
                 JOptionPane.showMessageDialog(this, "Die angegebenen Passwörter stimmen nicht überein.", "Passwort Error", JOptionPane.ERROR_MESSAGE);
             }
             else {
                 DataP d = new DataP();
-                Benutzer benutzer = new Benutzer(jTextFieldName.getText(), 
+                Benutzer ben = new Benutzer(jTextFieldName.getText(), 
                         jTextFieldVorname.getText(), 
                         passwort1, 
                         jTextFieldEmail.getText(), 
@@ -238,8 +260,19 @@ public class BenutzerWindow extends javax.swing.JFrame {
                         jTextFieldOrt.getText(),
                         jTextFieldPostleitzahl.getText(),
                         false);
-                d.saveNewBenutzer(benutzer);
-
+                
+                if (editMode) {
+                    if (passwort1.equals("")) {
+                        d.updateBenutzer(benutzer.getEmail(), ben, false);
+                    }
+                    else {
+                        d.updateBenutzer(benutzer.getEmail(), ben, true);
+                    }
+                }
+                else {
+                    d.saveNewBenutzer(ben);
+                }
+                
                 if (parent != null) {
                     parent.update();
                 }
