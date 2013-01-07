@@ -125,6 +125,11 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         jButtonProjektLoeschen.setText("Löschen");
+        jButtonProjektLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProjektLoeschenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -180,6 +185,11 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonAnsprechpartnerBearbeiten.setText("Bearbeiten");
 
         jButtonAnsprechpartnerLoeschen.setText("Löschen");
+        jButtonAnsprechpartnerLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnsprechpartnerLoeschenActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Organisation");
 
@@ -203,6 +213,11 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonOrganisationBearbeiten.setText("Bearbeiten");
 
         jButtonOrganisationLoeschen.setText("Löschen");
+        jButtonOrganisationLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrganisationLoeschenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -284,6 +299,11 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonBenutzerBearbeiten.setText("Bearbeiten");
 
         jButtonBenutzerLoeschen.setText("Löschen");
+        jButtonBenutzerLoeschen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBenutzerLoeschenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -376,6 +396,30 @@ public class MainWindow extends javax.swing.JFrame {
         OrganisationW = new OrganisationWindow(this);
         OrganisationW.setVisible(true);
     }//GEN-LAST:event_jButtonOrganisationNeuActionPerformed
+
+    private void jButtonProjektLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProjektLoeschenActionPerformed
+        DataP d = new DataP();
+        d.deleteProjekt(jTableProjekte.getValueAt(jTableProjekte.getSelectedRow(), 0).toString());     
+        update();
+    }//GEN-LAST:event_jButtonProjektLoeschenActionPerformed
+
+    private void jButtonAnsprechpartnerLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnsprechpartnerLoeschenActionPerformed
+        DataP d = new DataP();
+        d.deleteAnsprechpartner(jTableAnsprechpartner.getValueAt(jTableAnsprechpartner.getSelectedRow(), 1).toString());     
+        update();
+    }//GEN-LAST:event_jButtonAnsprechpartnerLoeschenActionPerformed
+
+    private void jButtonOrganisationLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrganisationLoeschenActionPerformed
+        DataP d = new DataP();
+        d.deleteOrganisation(jTableOrganisation.getValueAt(jTableOrganisation.getSelectedRow(), 0).toString());     
+        update();
+    }//GEN-LAST:event_jButtonOrganisationLoeschenActionPerformed
+
+    private void jButtonBenutzerLoeschenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBenutzerLoeschenActionPerformed
+        DataP d = new DataP();
+        d.deleteBenutzer(jTableBenutzer.getValueAt(jTableBenutzer.getSelectedRow(), 1).toString());     
+        update();
+    }//GEN-LAST:event_jButtonBenutzerLoeschenActionPerformed
 
     /**
      * @param args the command line arguments

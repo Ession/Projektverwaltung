@@ -149,6 +149,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#xf6;schen"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonProjektLoeschenActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -276,6 +279,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#xf6;schen"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAnsprechpartnerLoeschenActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
             </Component>
@@ -323,6 +329,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#xf6;schen"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOrganisationLoeschenActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -411,6 +420,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="L&#xf6;schen"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBenutzerLoeschenActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

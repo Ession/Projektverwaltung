@@ -100,11 +100,11 @@ public class DataBase
     }
 
     /**
-     * Runs a query and retruns the ResultSet
+     * Runs a query and returns the ResultSet
      *
      * @param expression
      *            SQL-Expression
-     * @return the ResultSet retruned by the Statement
+     * @return the ResultSet returned by the Statement
      * @throws SQLException
      */
     public synchronized ResultSet query(String expression)

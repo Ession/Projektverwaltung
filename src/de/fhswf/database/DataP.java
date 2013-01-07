@@ -42,7 +42,7 @@ public class DataP
                 
                 update(
                         "CREATE TABLE projekt("
-                        + "p_titel VARCHAR(30), "
+                        + "p_titel VARCHAR(30) UNIQUE, "
                         + "p_fach VARCHAR(30), "
                         + "p_kurzbeschreibung VARCHAR(200), "
                         + "p_beschreibung VARCHAR(1500), "
@@ -236,6 +236,18 @@ public class DataP
 
     }
 
+    public void deleteBenutzer(String sEmail)
+    {
+        try
+        {
+            dataBase.update("DELETE FROM benutzer WHERE b_email='" + sEmail + "'");
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void saveNewProjekt(Projekt p)
     {
         String query = "INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2) VALUES(";
@@ -330,6 +342,18 @@ public class DataP
         header.add("Vortrag 2");
         return new model(tabellenVector, header);
 
+    } 
+    
+    public void deleteProjekt(String sTitel)
+    {
+        try
+        {
+            dataBase.update("DELETE FROM projekt WHERE p_titel='" + sTitel + "'");
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
     public void saveNewAnsprechpartner(Ansprechpartner a)
@@ -414,6 +438,18 @@ public class DataP
         header.add("Organisation");
         return new model(tabellenVector, header);
 
+    }
+
+    public void deleteAnsprechpartner(String sEmail)
+    {
+        try
+        {
+            dataBase.update("DELETE FROM ansprechpartner WHERE a_email='" + sEmail + "'");
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
         
     public void saveNewOrganisation(Organisation o)
@@ -513,6 +549,18 @@ public class DataP
         header.add("Anzahl Ansprechpartner");
         return new model(tabellenVector, header);
 
+    }
+
+    public void deleteOrganisation(String sName)
+    {
+        try
+        {
+            dataBase.update("DELETE FROM organisation WHERE o_name='" + sName + "'");
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
