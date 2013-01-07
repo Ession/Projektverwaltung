@@ -4,18 +4,34 @@
  */
 package de.fhswf.forms;
 
+import de.fhswf.classes.Benutzer;
+import de.fhswf.database.DataP;
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Dark
  */
 public class BenutzerWindow extends javax.swing.JFrame {
 
+    MainWindow parent;
+    
     /**
      * Creates new form BenutzerWindow
      */
     public BenutzerWindow() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+    
+    /**
+     * Creates new form BenutzerWindow
+     */
+    public BenutzerWindow(MainWindow _parent) {
+        initComponents();
+        setLocationRelativeTo(null);
+        parent = _parent;
     }
 
     /**
@@ -52,17 +68,41 @@ public class BenutzerWindow extends javax.swing.JFrame {
 
         jLabel1.setText("Name");
 
-        jTextFieldName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNameActionPerformed(evt);
+        jTextFieldName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNameKeyTyped(evt);
             }
         });
 
         jLabel2.setText("Vorname");
 
+        jTextFieldVorname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldVornameKeyTyped(evt);
+            }
+        });
+
         jLabel3.setText("Passwort");
 
+        jPasswordFieldPasswort1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordFieldPasswort1KeyTyped(evt);
+            }
+        });
+
+        jPasswordFieldPasswort2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jPasswordFieldPasswort2KeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Email");
+
+        jTextFieldEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldEmailKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Telefon");
 
@@ -168,17 +208,94 @@ public class BenutzerWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNameActionPerformed
-
     private void jButtonAbbrechenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAbbrechenActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAbbrechenActionPerformed
 
     private void jButtonSpeichernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSpeichernActionPerformed
-        // TODO add your handling code here:
+        
+        String passwort1 = new String(jPasswordFieldPasswort1.getPassword());
+        String passwort2 = new String(jPasswordFieldPasswort2.getPassword());
+        
+        if (!jTextFieldName.getText().equals("") 
+                && !jTextFieldVorname.getText().equals("") 
+                && !jTextFieldEmail.getText().equals("") 
+                && !passwort1.equals("") 
+                && !passwort2.equals("") 
+                && jTextFieldEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"))
+        {
+            if ( !passwort1.equals(passwort2)) {
+                JOptionPane.showMessageDialog(this, "Die angegebenen Passwörter stimmen nicht überein.", "Passwort Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                DataP d = new DataP();
+                Benutzer benutzer = new Benutzer(jTextFieldName.getText(), 
+                        jTextFieldVorname.getText(), 
+                        passwort1, 
+                        jTextFieldEmail.getText(), 
+                        jTextFieldTelefon.getText(),
+                        jTextFieldAdresse.getText(),
+                        jTextFieldOrt.getText(),
+                        jTextFieldPostleitzahl.getText(),
+                        false);
+                d.saveNewBenutzer(benutzer);
+
+                if (parent != null) {
+                    parent.update();
+                }
+                this.dispose();
+            }
+        }
+        else
+        {
+            Color lightred = new Color(255,102,102);
+            
+            if (jTextFieldName.getText().equals(""))
+            {
+                jTextFieldName.setBackground(lightred);
+            }
+            
+            if (jTextFieldVorname.getText().equals(""))
+            {
+                jTextFieldVorname.setBackground(lightred);
+            }
+            
+            if (passwort1.equals(""))
+            {
+                jPasswordFieldPasswort1.setBackground(lightred);
+            }
+            
+            if (passwort2.equals(""))
+            {
+                jPasswordFieldPasswort2.setBackground(lightred);
+            }
+            
+            if (jTextFieldEmail.getText().equals("") || !jTextFieldEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$"))
+            {
+                jTextFieldEmail.setBackground(lightred);
+            }
+        }
     }//GEN-LAST:event_jButtonSpeichernActionPerformed
+
+    private void jTextFieldNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyTyped
+        jTextFieldName.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldNameKeyTyped
+
+    private void jTextFieldVornameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldVornameKeyTyped
+        jTextFieldVorname.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldVornameKeyTyped
+
+    private void jPasswordFieldPasswort1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldPasswort1KeyTyped
+        jPasswordFieldPasswort1.setBackground(Color.white);
+    }//GEN-LAST:event_jPasswordFieldPasswort1KeyTyped
+
+    private void jPasswordFieldPasswort2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldPasswort2KeyTyped
+        jPasswordFieldPasswort2.setBackground(Color.white);
+    }//GEN-LAST:event_jPasswordFieldPasswort2KeyTyped
+
+    private void jTextFieldEmailKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEmailKeyTyped
+        jTextFieldEmail.setBackground(Color.white);
+    }//GEN-LAST:event_jTextFieldEmailKeyTyped
 
     /**
      * @param args the command line arguments

@@ -342,7 +342,7 @@ public class MainWindow extends javax.swing.JFrame {
         {
             BenutzerW.dispose();
         }
-        BenutzerW = new BenutzerWindow();
+        BenutzerW = new BenutzerWindow(this);
         BenutzerW.setVisible(true);
     }//GEN-LAST:event_jButtonBenutzerNeuActionPerformed
 
