@@ -418,7 +418,7 @@ public class DataP
         
     public void saveNewOrganisation(Organisation o)
     {
-        String query = "INSERT INTO organisation(o_name, o_adresse, o_postleitzahl, o_ort) VALUES(";
+        String query = "INSERT INTO organisation(o_name, o_adresse, o_ort, o_postleitzahl) VALUES(";
         query += "'" + o.getName() + "',";
         query += "'" + o.getAdresse() + "',";
         query += "'" + o.getOrt() + "',";
