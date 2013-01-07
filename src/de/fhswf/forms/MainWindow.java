@@ -4,6 +4,7 @@
  */
 package de.fhswf.forms;
 
+import de.fhswf.classes.Benutzer;
 import de.fhswf.database.DataP;
 
 /**
@@ -15,6 +16,7 @@ public class MainWindow extends javax.swing.JFrame {
     LoginWindow parent;
     BenutzerWindow BenutzerW;
     ProjektWindow ProjektW;
+    Benutzer Benutzer;
     AnsprechpartnerWindow AnsprechpartnerW;
     OrganisationWindow OrganisationW;
     DataP d = new DataP();
@@ -22,10 +24,15 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
-    public MainWindow(LoginWindow _parent) {
+    public MainWindow(LoginWindow _parent, Benutzer _benutzer) {
         initComponents();
         parent = _parent;
+        Benutzer = _benutzer;
         setLocationRelativeTo(null);
+        
+        if(!Benutzer.getIsAdmin()) {
+            jTabbedPaneMain.setEnabledAt(2, false);
+        }
     }
     
     public MainWindow() {
@@ -42,7 +49,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel4 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPaneMain = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProjekte = new javax.swing.JTable();
@@ -132,7 +139,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Projekte", jPanel1);
+        jTabbedPaneMain.addTab("Projekte", jPanel1);
 
         jLabel1.setText("Ansprechpartner");
 
@@ -224,7 +231,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Ansprechpartner", jPanel2);
+        jTabbedPaneMain.addTab("Ansprechpartner", jPanel2);
 
         jTableBenutzer.setModel(d.getBenutzerModel());
         jScrollPane4.setViewportView(jTableBenutzer);
@@ -270,7 +277,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Benutzer", jPanel3);
+        jTabbedPaneMain.addTab("Benutzer", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -278,14 +285,14 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPaneMain)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPaneMain)
                 .addContainerGap())
         );
 
@@ -390,7 +397,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPaneMain;
     private javax.swing.JTable jTableAnsprechpartner;
     private javax.swing.JTable jTableBenutzer;
     private javax.swing.JTable jTableOrganisation;

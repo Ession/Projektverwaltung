@@ -122,7 +122,6 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         DataP d = new DataP();
-        String email = jTextFieldEmail.getText();
         String password = new String(jPasswordFieldPasswort.getPassword());
         Benutzer benutzer = d.getBenutzer(jTextFieldEmail.getText());
         
@@ -136,7 +135,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 {
                     MainW.dispose();
                 }
-                MainW = new MainWindow(this);
+                MainW = new MainWindow(this, benutzer);
                 MainW.setVisible(true);
                 this.setVisible(false);
             }

@@ -170,7 +170,6 @@ public class DataP
             }
             else
             {
-                System.out.println("test");
                 return null;
             }
         }
@@ -351,7 +350,6 @@ public class DataP
             }
             else
             {
-                System.out.println("test");
                 return null;
             }
         }
@@ -435,7 +433,6 @@ public class DataP
             }
             else
             {
-                System.out.println("test");
                 return null;
             }
         }
