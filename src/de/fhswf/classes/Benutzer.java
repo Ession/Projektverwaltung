@@ -19,6 +19,18 @@ public class Benutzer {
     private String Postleitzahl;
     private boolean IsAdmin;
 
+    /**
+     *
+     * @param sName
+     * @param sVorname
+     * @param sPasswordHash
+     * @param sEmail
+     * @param sTelefon
+     * @param sAdresse
+     * @param sOrt
+     * @param sPostleitzahl
+     * @param bIsAdmin
+     */
     public Benutzer(String sName, String sVorname, String sPasswordHash, String sEmail, String sTelefon, String sAdresse, String sOrt, String sPostleitzahl, boolean bIsAdmin) { 
         Name = sName;
         Vorname = sVorname;

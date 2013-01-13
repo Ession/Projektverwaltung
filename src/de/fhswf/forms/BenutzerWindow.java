@@ -30,6 +30,7 @@ public class BenutzerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form BenutzerWindow
+     * @param _parent 
      */
     public BenutzerWindow(MainWindow _parent) {
         initComponents();
@@ -40,6 +41,8 @@ public class BenutzerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form BenutzerWindow
+     * @param _parent 
+     * @param _benutzer 
      */
     public BenutzerWindow(MainWindow _parent, Benutzer _benutzer) {
         initComponents();

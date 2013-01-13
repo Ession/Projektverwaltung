@@ -3,9 +3,18 @@ package de.fhswf.database;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author dark
+ */
 public class model extends DefaultTableModel
 {
 
+    /**
+     *
+     * @param data
+     * @param columnNames
+     */
     public model(Vector data, Vector columnNames)
     {
         super(data, columnNames);

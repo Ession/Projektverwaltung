@@ -26,6 +26,8 @@ public class ProjektWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form ProjektWindow
+     * @param _parent
+     * @param _projekt  
      */
     public ProjektWindow(MainWindow _parent, Projekt _projekt) {
         initComponents();
@@ -55,6 +57,7 @@ public class ProjektWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form ProjektWindow
+     * @param _parent 
      */
     public ProjektWindow(MainWindow _parent) {
         initComponents();
@@ -86,6 +89,10 @@ public class ProjektWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     *
+     * @param _benutzer
+     */
     public void SetBenutzer(Benutzer[] _benutzer) {
         Benutzer = _benutzer;
         

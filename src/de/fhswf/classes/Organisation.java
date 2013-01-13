@@ -14,6 +14,13 @@ public class Organisation {
     private String Ort;
     private String Postleitzahl;
     
+    /**
+     *
+     * @param sName
+     * @param sAdresse
+     * @param sOrt
+     * @param sPostleitzahl
+     */
     public Organisation(String sName, String sAdresse, String sOrt, String sPostleitzahl)
     {
         Name = sName;

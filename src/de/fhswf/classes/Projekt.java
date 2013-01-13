@@ -19,6 +19,18 @@ public class Projekt {
     private String Vortrag1;
     private String Vortrag2;
     
+    /**
+     *
+     * @param sTitel
+     * @param sFach
+     * @param sKurzbeschreibung
+     * @param sBeschreibung
+     * @param sSkizze
+     * @param aAnsprechpartner
+     * @param bTeilnehmer
+     * @param sVortrag1
+     * @param sVortrag2
+     */
     public Projekt(String sTitel, 
             String sFach, 
             String sKurzbeschreibung, 

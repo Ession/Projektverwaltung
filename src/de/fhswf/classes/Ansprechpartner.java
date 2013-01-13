@@ -14,6 +14,13 @@ public class Ansprechpartner {
     private String Email;
     private Organisation Organisation;
     
+    /**
+     *
+     * @param sName
+     * @param sVorname
+     * @param sEmail
+     * @param oOrganisation
+     */
     public Ansprechpartner(String sName, String sVorname, String sEmail, Organisation oOrganisation)
     {
         Name = sName;

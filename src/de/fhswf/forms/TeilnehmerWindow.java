@@ -28,6 +28,7 @@ public class TeilnehmerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form TeilnehmerWindow
+     * @param _parent 
      */
     public TeilnehmerWindow(ProjektWindow _parent) {
         initComponents();
@@ -37,6 +38,8 @@ public class TeilnehmerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form TeilnehmerWindow
+     * @param _parent
+     * @param _benutzer  
      */
     public TeilnehmerWindow(ProjektWindow _parent, Benutzer[] _benutzer) {
         initComponents();

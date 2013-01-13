@@ -22,6 +22,7 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form AnsprechpartnerWindow
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
      */
     public AnsprechpartnerWindow(MainWindow _parent) {
         initComponents();
@@ -39,6 +40,8 @@ public class AnsprechpartnerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form AnsprechpartnerWindow
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
+     * @param _ansprechpartner Ansprechpartner dessen Daten im neuen Fenster angezeigt werden sollen.
      */
     public AnsprechpartnerWindow(MainWindow _parent, Ansprechpartner _ansprechpartner) {
         initComponents();

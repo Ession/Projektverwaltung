@@ -36,12 +36,21 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ *
+ * @author dark
+ */
 public class DataBase
 {
 
     Connection conn; // our connnection to the db - presist for life of program
 
     // we dont want this garbage collected until we are done
+    /**
+     *
+     * @param db_file_name_prefix
+     * @throws Exception
+     */
     public DataBase(String db_file_name_prefix) throws Exception
     {
         // Load the HSQL Database Engine JDBC driver
@@ -62,6 +71,10 @@ public class DataBase
                 ""); // password
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void shutdown() throws SQLException
     {
 
@@ -75,6 +88,11 @@ public class DataBase
     }
 
     // use for SQL command SELECT
+    /**
+     *
+     * @param expression
+     * @throws SQLException
+     */
     public synchronized void dumpQuery(String expression) throws SQLException
     {
 
@@ -121,6 +139,11 @@ public class DataBase
     }
 
     // use for SQL commands CREATE, DROP, INSERT and UPDATE
+    /**
+     *
+     * @param expression
+     * @throws SQLException
+     */
     public synchronized void update(String expression) throws SQLException
     {
 
@@ -138,6 +161,11 @@ public class DataBase
         st.close();
     } // void update()
 
+    /**
+     *
+     * @param rs
+     * @throws SQLException
+     */
     public static void dump(ResultSet rs) throws SQLException
     {
 

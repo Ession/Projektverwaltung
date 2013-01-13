@@ -12,6 +12,10 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author dark
+ */
 public class DataP
 {
 
@@ -101,6 +105,10 @@ public class DataP
         }
     }
 
+    /**
+     *
+     * @param expression
+     */
     public void update(String expression)
     {
         if (dataBase == null)
@@ -118,6 +126,9 @@ public class DataP
         }
     }
 
+    /**
+     *
+     */
     public void shutdown()
     {
         try
@@ -130,11 +141,18 @@ public class DataP
         }
     }
 
+    /**
+     *
+     */
     public DataP()
     {
         initDataBase();
     }
 
+    /**
+     *
+     * @param b
+     */
     public void saveNewBenutzer(Benutzer b)
     {
         String query = "INSERT INTO benutzer(b_name, b_vorname, b_passwordhash, b_email, b_telefon, b_adresse, b_ort, b_postleitzahl, b_isadmin) VALUES(";
@@ -158,6 +176,12 @@ public class DataP
         }
     }
         
+    /**
+     *
+     * @param sOldEmail
+     * @param b
+     * @param NewPW
+     */
     public void updateBenutzer(String sOldEmail, Benutzer b, boolean NewPW)
     {
         String query;
@@ -195,6 +219,11 @@ public class DataP
         }
     }
     
+    /**
+     *
+     * @param email
+     * @return
+     */
     public Benutzer getBenutzer(String email)
     {
 
@@ -218,6 +247,10 @@ public class DataP
         return null;
     }
         
+    /**
+     *
+     * @return
+     */
     public Vector<Benutzer> getAllBenutzer()
     {
         Vector<Benutzer> vBenutzer = new Vector<Benutzer>();
@@ -238,6 +271,10 @@ public class DataP
         return vBenutzer;
     }
     
+    /**
+     *
+     * @return
+     */
     public model getBenutzerModel()
     {
         Vector tabellenVector = new Vector();
@@ -272,6 +309,10 @@ public class DataP
         return new model(tabellenVector, header);
     }
 
+    /**
+     *
+     * @param sEmail
+     */
     public void deleteBenutzer(String sEmail)
     {
         try
@@ -284,6 +325,10 @@ public class DataP
         }
     }
     
+    /**
+     *
+     * @param p
+     */
     public void saveNewProjekt(Projekt p)
     {
         String query = "INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2) VALUES(";
@@ -322,6 +367,11 @@ public class DataP
         }
     }
     
+    /**
+     *
+     * @param titel
+     * @return
+     */
     public Projekt getProjekt(String titel)
     {
         try
@@ -349,6 +399,11 @@ public class DataP
         return null;
     }
         
+    /**
+     *
+     * @param sOldTitel
+     * @param p
+     */
     public void updateProjekt(String sOldTitel, Projekt p)
     {
         String query = "UPDATE projekt "
@@ -381,6 +436,10 @@ public class DataP
         }
     }
     
+    /**
+     *
+     * @return
+     */
     public Vector<Projekt> getAllProjekt()
     {
         Vector<Projekt> vProjekt = new Vector<Projekt>();
@@ -413,6 +472,10 @@ public class DataP
         return vProjekt;
     }
     
+    /**
+     *
+     * @return
+     */
     public model getProjektModel()
     {
         Vector tabellenVector = new Vector();
@@ -439,6 +502,10 @@ public class DataP
 
     } 
     
+    /**
+     *
+     * @param sTitel
+     */
     public void deleteProjekt(String sTitel)
     {
         try
@@ -451,6 +518,10 @@ public class DataP
         }
     }
         
+    /**
+     *
+     * @param a
+     */
     public void saveNewAnsprechpartner(Ansprechpartner a)
     {
         String query = "INSERT INTO ansprechpartner(a_name, a_vorname, a_email, a_organisation) VALUES(";
@@ -469,6 +540,11 @@ public class DataP
         }
     }
         
+    /**
+     *
+     * @param sOldEmail
+     * @param a
+     */
     public void updateAnsprechpartner(String sOldEmail, Ansprechpartner a)
     {
         String query = "UPDATE ansprechpartner "
@@ -487,6 +563,11 @@ public class DataP
         }
     }
         
+    /**
+     *
+     * @param email
+     * @return
+     */
     public Ansprechpartner getAnsprechpartner(String email)
     {
 
@@ -511,6 +592,10 @@ public class DataP
         return null;
     }
     
+    /**
+     *
+     * @return
+     */
     public Vector<Ansprechpartner> getAllAnsprechpartner()
     {
         Vector<Ansprechpartner> vAnsp = new Vector<Ansprechpartner>();
@@ -532,6 +617,10 @@ public class DataP
         return vAnsp;
     }
     
+    /**
+     *
+     * @return
+     */
     public model getAnsprechpartnerModel()
     {
         Vector tabellenVector = new Vector();
@@ -553,6 +642,10 @@ public class DataP
 
     }
 
+    /**
+     *
+     * @param sEmail
+     */
     public void deleteAnsprechpartner(String sEmail)
     {
         try
@@ -565,6 +658,10 @@ public class DataP
         }
     }
         
+    /**
+     *
+     * @param o
+     */
     public void saveNewOrganisation(Organisation o)
     {
         String query = "INSERT INTO organisation(o_name, o_adresse, o_ort, o_postleitzahl) VALUES(";
@@ -583,6 +680,11 @@ public class DataP
         }
     }
         
+    /**
+     *
+     * @param sOldName
+     * @param o
+     */
     public void updateOrganisation(String sOldName, Organisation o)
     {
         String query = "UPDATE organisation "
@@ -601,6 +703,11 @@ public class DataP
         }
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public Organisation getOrganisation(String name)
     {
 
@@ -624,6 +731,10 @@ public class DataP
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vector<Organisation> getAllOrganisation()
     {
         Vector<Organisation> vOrg = new Vector<Organisation>();
@@ -644,6 +755,10 @@ public class DataP
         return vOrg;
     }
 
+    /**
+     *
+     * @return
+     */
     public model getOrganisationsModel()
     {
         Vector tabellenVector = new Vector();
@@ -682,6 +797,10 @@ public class DataP
 
     }
 
+    /**
+     *
+     * @param sName
+     */
     public void deleteOrganisation(String sName)
     {
         try

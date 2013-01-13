@@ -22,6 +22,8 @@ public class MainWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form MainWindow
+     * @param _parent 
+     * @param _benutzer 
      */
     public MainWindow(LoginWindow _parent, Benutzer _benutzer) {
         initComponents();
@@ -35,11 +37,17 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     *
+     */
     public MainWindow() {
         initComponents();
         update();
     }
     
+    /**
+     *
+     */
     public final void update()
     {
         DataP d = new DataP();

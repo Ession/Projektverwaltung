@@ -20,6 +20,7 @@ public class OrganisationWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form OrganisationWindow
+     * @param _parent 
      */
     public OrganisationWindow(MainWindow _parent) {
         initComponents();
@@ -30,6 +31,8 @@ public class OrganisationWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form OrganisationWindow
+     * @param _parent
+     * @param _org  
      */
     public OrganisationWindow(MainWindow _parent, Organisation _org) {
         initComponents();
