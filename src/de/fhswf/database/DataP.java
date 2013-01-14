@@ -1051,25 +1051,6 @@ public class DataP
     }  
     
     /**
-     * Löscht einen Termin aus der Datenbank
-     * @param titel Titel des Projektes.
-     * @param index Index des Termins
-     */
-    public void deleteTermin(int index, String titel)
-    {
-        if (index <= 2 && titel != null) {
-            try
-            {
-                dataBase.update("UPDATE projekt SET p_vortrag" + index + "='' WHERE p_titel='" + titel + "'");
-            }
-            catch (SQLException ex)
-            {
-                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }        
-    
-    /**
      * Ändert den Status eines Terminvorschlags
      * @param index Index des Vorgeschlagenen Termins.
      * @param projekttitel Titel des Projektes dem der Termin zugeordnet ist.

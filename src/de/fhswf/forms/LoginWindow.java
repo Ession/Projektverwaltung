@@ -5,6 +5,8 @@
 package de.fhswf.forms;
 
 import de.fhswf.classes.Benutzer;
+import de.fhswf.classes.Projekt;
+import de.fhswf.classes.Terminvorschlag;
 import de.fhswf.database.DataP;
 import javax.swing.JOptionPane;
 
@@ -148,14 +150,26 @@ public class LoginWindow extends javax.swing.JFrame {
                 
                 if (benutzer.getIsAdmin()) {
                     while (d.getTerminvorschlagStatus("pending") != null) {
-                        int dialogResult = JOptionPane.showConfirmDialog(this, "Möchten Sie den Termin: " + d.getTerminvorschlagStatus("pending").getTermin() + " \nder Projektes: " + d.getTerminvorschlagStatus("pending").getTitel() + " bestätigen?","Terminvorschlag",JOptionPane.YES_NO_OPTION);
+                        Terminvorschlag tv = d.getTerminvorschlagStatus("pending");
+                        
+                        int dialogResult = JOptionPane.showConfirmDialog(this, "Möchten Sie den Termin: " + tv.getTermin() + " \nder Projektes: " + tv.getTitel() + " bestätigen?","Terminvorschlag",JOptionPane.YES_NO_OPTION);
                     
                         if(dialogResult == JOptionPane.YES_OPTION) {
-                            d.updateTerminstatus(d.getTerminvorschlagStatus("pending").getIndex(), d.getTerminvorschlagStatus("pending").getTitel(), "angenommen");
+                            d.updateTerminstatus(tv.getIndex(), tv.getTitel(), "angenommen");
                         }
                         else {
-                            d.updateTerminstatus(d.getTerminvorschlagStatus("pending").getIndex(), d.getTerminvorschlagStatus("pending").getTitel(), "abgelehnt");
-                            d.deleteTermin(d.getTerminvorschlagStatus("pending").getIndex(), d.getTerminvorschlagStatus("pending").getTitel());
+                            d.updateTerminstatus(tv.getIndex(), tv.getTitel(), "abgelehnt");
+                            Projekt pro = d.getProjekt(tv.getTitel());
+                            
+                            if (tv.getIndex() == 1) {
+                                pro.setVortrag1("");
+                            }
+                            
+                            if (tv.getIndex() == 2) {
+                                pro.setVortrag2("");
+                            }
+                            
+                            d.updateProjekt(tv.getTitel(), pro);
                         }
                     }
                 }

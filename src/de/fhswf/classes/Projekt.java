@@ -115,4 +115,18 @@ public class Projekt {
         return Vortrag2;
     }
 
+    /**
+     * @param Vortrag1 Erster Vortragstermin
+     */
+    public void setVortrag1(String Vortrag1) {
+        this.Vortrag1 = Vortrag1;
+    }
+
+    /**
+     * @param Vortrag2 zweiter Vortragstermin
+     */
+    public void setVortrag2(String Vortrag2) {
+        this.Vortrag2 = Vortrag2;
+    }
+
 }
