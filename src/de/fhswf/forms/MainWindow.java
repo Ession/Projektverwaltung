@@ -8,7 +8,8 @@ import de.fhswf.classes.Benutzer;
 import de.fhswf.database.DataP;
 
 /**
- *
+ * Im MainWindow werden alle In der Datenbank gespeicherten Daten angezeigt und es ist möglich Daten zu löschen/verändern/erstellen.
+ * 
  * @author Dark
  */
 public class MainWindow extends javax.swing.JFrame {
@@ -22,8 +23,8 @@ public class MainWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form MainWindow
-     * @param _parent 
-     * @param _benutzer 
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
+     * @param _benutzer Benutzer der sich im System angemeldet hat (zur Überprüfung der Rechte)
      */
     public MainWindow(LoginWindow _parent, Benutzer _benutzer) {
         initComponents();
@@ -38,7 +39,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     /**
-     *
+     * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
@@ -46,7 +47,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     /**
-     *
+     * Updated die angezeigten Daten in allen dargetsellten Tabellen.
      */
     public final void update()
     {

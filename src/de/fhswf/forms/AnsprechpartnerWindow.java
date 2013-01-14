@@ -11,7 +11,8 @@ import java.awt.Color;
 import java.util.Enumeration;
 
 /**
- *
+ * Im AnsprechpartnerWindow können alle Daten die zum anlegen eines Ansprechpartners benötigt werden eingegeben werden.
+ * 
  * @author Dark
  */
 public class AnsprechpartnerWindow extends javax.swing.JFrame {

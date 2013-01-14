@@ -5,7 +5,7 @@
 package de.fhswf.classes;
 
 /**
- *
+ * Datenklasse in der Benutzer gespeichert werden.
  * @author Dark
  */
 public class Benutzer {
@@ -20,16 +20,16 @@ public class Benutzer {
     private boolean IsAdmin;
 
     /**
-     *
-     * @param sName
-     * @param sVorname
-     * @param sPasswordHash
-     * @param sEmail
-     * @param sTelefon
-     * @param sAdresse
-     * @param sOrt
-     * @param sPostleitzahl
-     * @param bIsAdmin
+     * Legt einen neuen Benutzer an.
+     * @param sName Name des Benutzers.
+     * @param sVorname Vorname des Benutzers.
+     * @param sPasswordHash Passworthash des Benutzers.
+     * @param sEmail Email Adresse des Benutzers.
+     * @param sTelefon Telefonnummer des Benutzers.
+     * @param sAdresse Adresse des Benutzers.
+     * @param sOrt Wohnort des Benutzers.
+     * @param sPostleitzahl Postleitzahl des Benutzers.
+     * @param bIsAdmin Handelt es sich beim benutzer um einen Admin?
      */
     public Benutzer(String sName, String sVorname, String sPasswordHash, String sEmail, String sTelefon, String sAdresse, String sOrt, String sPostleitzahl, boolean bIsAdmin) { 
         Name = sName;
@@ -44,129 +44,66 @@ public class Benutzer {
     }
     
     /**
-     * @return the Name
+     * @return Name des Benutzers.
      */
     public String getName() {
         return Name;
     }
 
     /**
-     * @param Name the Name to set
-     */
-    public void setName(String Name) {
-        this.Name = Name;
-    }
-
-    /**
-     * @return the Vorname
+     * @return Vorname des Benutzers.
      */
     public String getVorname() {
         return Vorname;
     }
 
     /**
-     * @param Vorname the Vorname to set
-     */
-    public void setVorname(String Vorname) {
-        this.Vorname = Vorname;
-    }
-
-    /**
-     * @return the PasswordHash
+     * @return Passworthash des Benutzers.
      */
     public String getPasswordHash() {
         return PasswordHash;
     }
 
     /**
-     * @param PasswordHash the PasswordHash to set
-     */
-    public void setPasswordHash(String PasswordHash) {
-        this.PasswordHash = PasswordHash;
-    }
-
-    /**
-     * @return the Email
+     * @return Email Adresse des Benutzers.
      */
     public String getEmail() {
         return Email;
     }
 
     /**
-     * @param Email the Email to set
-     */
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-
-    /**
-     * @return the Telefon
+     * @return Telefonnummer des Benutzers.
      */
     public String getTelefon() {
         return Telefon;
     }
 
     /**
-     * @param Telefon the Telefon to set
-     */
-    public void setTelefon(String Telefon) {
-        this.Telefon = Telefon;
-    }
-
-    /**
-     * @return the Adresse
+     * @return Adresse des Benutzers.
      */
     public String getAdresse() {
         return Adresse;
     }
 
     /**
-     * @param Adresse the Adresse to set
-     */
-    public void setAdresse(String Adresse) {
-        this.Adresse = Adresse;
-    }
-
-    /**
-     * @return the Ort
+     * @return Wohnort des Benutzers.
      */
     public String getOrt() {
         return Ort;
     }
 
     /**
-     * @param Ort the Ort to set
-     */
-    public void setOrt(String Ort) {
-        this.Ort = Ort;
-    }
-
-    /**
-     * @return the Postleitzahl
+     * @return Postleitzahl des Benutzers.
      */
     public String getPostleitzahl() {
         return Postleitzahl;
     }
 
     /**
-     * @param Postleitzahl the Postleitzahl to set
-     */
-    public void setPostleitzahl(String Postleitzahl) {
-        this.Postleitzahl = Postleitzahl;
-    }
-
-    /**
-     * @return the IsAdmin
+     * @return Wenn es suich um einen Admin handelt true, sonst false.
      */
     public boolean getIsAdmin() {
         return IsAdmin;
-    }
-
-    /**
-     * @param IsAdmin the IsAdmin to set
-     */
-    public void setIsAdmin(boolean IsAdmin) {
-        this.IsAdmin = IsAdmin;
     }
     
 }

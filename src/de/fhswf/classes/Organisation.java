@@ -5,7 +5,7 @@
 package de.fhswf.classes;
 
 /**
- *
+ * Datenklasse in der Organisationen gespeichert werden.
  * @author Dark
  */
 public class Organisation {
@@ -15,11 +15,11 @@ public class Organisation {
     private String Postleitzahl;
     
     /**
-     *
-     * @param sName
-     * @param sAdresse
-     * @param sOrt
-     * @param sPostleitzahl
+     * Legt eine neue Organisation an.
+     * @param sName Name der Organisation.
+     * @param sAdresse Adresse der Organisation.
+     * @param sOrt Wohnort der Organisation.
+     * @param sPostleitzahl Postleitzahl der Organisation.
      */
     public Organisation(String sName, String sAdresse, String sOrt, String sPostleitzahl)
     {
@@ -30,58 +30,30 @@ public class Organisation {
     }
 
     /**
-     * @return the Name
+     * @return Name der Organisation.
      */
     public String getName() {
         return Name;
     }
 
     /**
-     * @param Name the Name to set
-     */
-    public void setName(String Name) {
-        this.Name = Name;
-    }
-
-    /**
-     * @return the Adresse
+     * @return Adresse der Organisation.
      */
     public String getAdresse() {
         return Adresse;
     }
 
     /**
-     * @param Adresse the Adresse to set
-     */
-    public void setAdresse(String Adresse) {
-        this.Adresse = Adresse;
-    }
-
-    /**
-     * @return the Ort
+     * @return Wohnort der Organisation.
      */
     public String getOrt() {
         return Ort;
     }
 
     /**
-     * @param Ort the Ort to set
-     */
-    public void setOrt(String Ort) {
-        this.Ort = Ort;
-    }
-
-    /**
-     * @return the Postleitzahl
+     * @return Postleitzahl der Organisation.
      */
     public String getPostleitzahl() {
         return Postleitzahl;
-    }
-
-    /**
-     * @param Postleitzahl the Postleitzahl to set
-     */
-    public void setPostleitzahl(String Postleitzahl) {
-        this.Postleitzahl = Postleitzahl;
     }
 }

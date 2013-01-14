@@ -28,7 +28,7 @@ public class TeilnehmerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form TeilnehmerWindow
-     * @param _parent 
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
      */
     public TeilnehmerWindow(ProjektWindow _parent) {
         initComponents();
@@ -38,14 +38,13 @@ public class TeilnehmerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form TeilnehmerWindow
-     * @param _parent
-     * @param _benutzer  
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
+     * @param _benutzer Teilnehmer dessen daten im Fenster angezeigt werden sollen.
      */
     public TeilnehmerWindow(ProjektWindow _parent, Benutzer[] _benutzer) {
         initComponents();
         setLocationRelativeTo(null);
         parent = _parent;
-        //System.out.println(_benutzer[0]);
     }
 
     /**

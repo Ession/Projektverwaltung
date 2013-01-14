@@ -5,7 +5,7 @@
 package de.fhswf.classes;
 
 /**
- *
+ * Datenklasse in der Ansprechpartner gespeichert werden.
  * @author Dark
  */
 public class Ansprechpartner {
@@ -15,11 +15,11 @@ public class Ansprechpartner {
     private Organisation Organisation;
     
     /**
-     *
-     * @param sName
-     * @param sVorname
-     * @param sEmail
-     * @param oOrganisation
+     * Legt einen neuen Ansprechpartner an.
+     * @param sName Der Name des Ansprechpartners.
+     * @param sVorname Der Vorname des Ansprechpartners.
+     * @param sEmail Die Email Adresse des Ansprechpartners.
+     * @param oOrganisation Die Organisation der der Ansprechpartner angehört.
      */
     public Ansprechpartner(String sName, String sVorname, String sEmail, Organisation oOrganisation)
     {
@@ -30,58 +30,30 @@ public class Ansprechpartner {
     }
 
     /**
-     * @return the Name
+     * @return Name des Ansprechpartners
      */
     public String getName() {
         return Name;
     }
 
     /**
-     * @param Name the Name to set
-     */
-    public void setName(String Name) {
-        this.Name = Name;
-    }
-
-    /**
-     * @return the Vorname
+     * @return Vorname des Ansprechpartners.
      */
     public String getVorname() {
         return Vorname;
     }
 
     /**
-     * @param Vorname the Vorname to set
-     */
-    public void setVorname(String Vorname) {
-        this.Vorname = Vorname;
-    }
-
-    /**
-     * @return the Email
+     * @return Email Adresse des Ansprechpartners.
      */
     public String getEmail() {
         return Email;
     }
 
     /**
-     * @param Email the Email to set
-     */
-    public void setEmail(String Email) {
-        this.Email = Email;
-    }
-
-    /**
-     * @return the Organisation
+     * @return Organisation der der Ansprechpartner angehört.
      */
     public Organisation getOrganisation() {
         return Organisation;
-    }
-
-    /**
-     * @param Organisation the Organisation to set
-     */
-    public void setOrganisation(Organisation Organisation) {
-        this.Organisation = Organisation;
     }
 }

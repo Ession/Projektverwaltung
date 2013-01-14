@@ -9,7 +9,8 @@ import de.fhswf.database.DataP;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Im LoginWindow können Benutzerdaten eingegeben werden um sich mit dem Programm zu authentifizieren.
+ * 
  * @author Dark
  */
 public class LoginWindow extends javax.swing.JFrame {

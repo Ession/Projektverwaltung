@@ -10,7 +10,8 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Im BenutzerWindow können alle Daten die zum anlegen eines neuen Benutzers benötigt werden eingegeben werden.
+ * 
  * @author Dark
  */
 public class BenutzerWindow extends javax.swing.JFrame {
@@ -30,7 +31,7 @@ public class BenutzerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form BenutzerWindow
-     * @param _parent 
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
      */
     public BenutzerWindow(MainWindow _parent) {
         initComponents();
@@ -41,8 +42,8 @@ public class BenutzerWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form BenutzerWindow
-     * @param _parent 
-     * @param _benutzer 
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
+     * @param _benutzer Benutzer dessen Daten im neuen Fenster angezeigt werden sollen.
      */
     public BenutzerWindow(MainWindow _parent, Benutzer _benutzer) {
         initComponents();

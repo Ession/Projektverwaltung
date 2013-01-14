@@ -26,8 +26,8 @@ public class ProjektWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form ProjektWindow
-     * @param _parent
-     * @param _projekt  
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
+     * @param _projekt Projekt dessen Daten im neu erstellten Fenster angezeigt werden sollen.
      */
     public ProjektWindow(MainWindow _parent, Projekt _projekt) {
         initComponents();
@@ -57,7 +57,7 @@ public class ProjektWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form ProjektWindow
-     * @param _parent 
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
      */
     public ProjektWindow(MainWindow _parent) {
         initComponents();
@@ -90,8 +90,8 @@ public class ProjektWindow extends javax.swing.JFrame {
     }
     
     /**
-     *
-     * @param _benutzer
+     * Stellt die Namen der Teilnehmer am Projekt in einem Textlabel da. 
+     * @param _benutzer Teilnehmer die Am projekt Teilnehmen sollen.
      */
     public void SetBenutzer(Benutzer[] _benutzer) {
         Benutzer = _benutzer;

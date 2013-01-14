@@ -5,7 +5,7 @@
 package de.fhswf.classes;
 
 /**
- *
+ * Datenklasse in der POrojekte gespeichert werden.
  * @author Dark
  */
 public class Projekt {
@@ -20,16 +20,16 @@ public class Projekt {
     private String Vortrag2;
     
     /**
-     *
-     * @param sTitel
-     * @param sFach
-     * @param sKurzbeschreibung
-     * @param sBeschreibung
-     * @param sSkizze
-     * @param aAnsprechpartner
-     * @param bTeilnehmer
-     * @param sVortrag1
-     * @param sVortrag2
+     * Legt ein neues Projekt an.
+     * @param sTitel Titel Des Projektes.
+     * @param sFach Fach Des Projektes.
+     * @param sKurzbeschreibung Kurzbeschreibung zum Projekt.
+     * @param sBeschreibung Beschreibung zum Projekt.
+     * @param sSkizze Skizze zum Projekt.
+     * @param aAnsprechpartner Ansprechpartner des Projektes.
+     * @param bTeilnehmer Teilnehmer des Projektes
+     * @param sVortrag1 Erster Vortragstermin.
+     * @param sVortrag2 Zweiter Vortragstermin.
      */
     public Projekt(String sTitel, 
             String sFach, 
@@ -53,129 +53,66 @@ public class Projekt {
     }
     
     /**
-     * @return the Titel
+     * @return Titel Des Projektes.
      */
     public String getTitel() {
         return Titel;
     }
 
     /**
-     * @param Titel the Titel to set
-     */
-    public void setTitel(String Titel) {
-        this.Titel = Titel;
-    }
-
-    /**
-     * @return the Fach
+     * @return Fach Des Projektes.
      */
     public String getFach() {
         return Fach;
     }
 
     /**
-     * @param Fach the Fach to set
-     */
-    public void setFach(String Fach) {
-        this.Fach = Fach;
-    }
-
-    /**
-     * @return the Kurzbeschreibung
+     * @return Kurzbeschreibung zum Projekt
      */
     public String getKurzbeschreibung() {
         return Kurzbeschreibung;
     }
 
     /**
-     * @param Kurzbeschreibung the Kurzbeschreibung to set
-     */
-    public void setKurzbeschreibung(String Kurzbeschreibung) {
-        this.Kurzbeschreibung = Kurzbeschreibung;
-    }
-
-    /**
-     * @return the Beschreibung
+     * @return Beschreibung des Projektes
      */
     public String getBeschreibung() {
         return Beschreibung;
     }
 
     /**
-     * @param Beschreibung the Beschreibung to set
-     */
-    public void setBeschreibung(String Beschreibung) {
-        this.Beschreibung = Beschreibung;
-    }
-
-    /**
-     * @return the Skizze
+     * @return Skizze des Projektes
      */
     public String getSkizze() {
         return Skizze;
     }
 
     /**
-     * @param Skizze the Skizze to set
-     */
-    public void setSkizze(String Skizze) {
-        this.Skizze = Skizze;
-    }
-
-    /**
-     * @return the Ansprechpartner
+     * @return Ansprechpartner des Projektes
      */
     public Ansprechpartner getAnsprechpartner() {
         return Ansprechpartner;
     }
 
     /**
-     * @param Ansprechpartner the Ansprechpartner to set
-     */
-    public void setAnsprechpartner(Ansprechpartner Ansprechpartner) {
-        this.Ansprechpartner = Ansprechpartner;
-    }
-
-    /**
-     * @return the Teilnehmer
+     * @return Teilnehmer des Projektes
      */
     public Benutzer[] getTeilnehmer() {
         return Teilnehmer;
     }
 
     /**
-     * @param Teilnehmer the Teilnehmer to set
-     */
-    public void setTeilnehmer(Benutzer[] Teilnehmer) {
-        this.Teilnehmer = Teilnehmer;
-    }
-
-    /**
-     * @return the Vortrag1
+     * @return Erster Vortragstermin
      */
     public String getVortrag1() {
         return Vortrag1;
     }
 
     /**
-     * @param Vortrag1 the Vortrag1 to set
-     */
-    public void setVortrag1(String Vortrag1) {
-        this.Vortrag1 = Vortrag1;
-    }
-
-    /**
-     * @return the Vortrag2
+     * @return zweiter Vortragstermin
      */
     public String getVortrag2() {
         return Vortrag2;
     }
 
-    /**
-     * @param Vortrag2 the Vortrag2 to set
-     */
-    public void setVortrag2(String Vortrag2) {
-        this.Vortrag2 = Vortrag2;
-    }
-    
 }

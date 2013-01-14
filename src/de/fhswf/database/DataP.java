@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Datenbankverbindungsklasse für die Projektverwaltung 
  * @author dark
  */
 public class DataP
@@ -22,7 +22,10 @@ public class DataP
     private static final String DataBaseFileName = "projektverwaltung3";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
-
+    
+    /**
+     * Initieren der Datenbank mit erstellen von Tabellen und Testdaten.
+     */
     private void initDataBase()
     {
         Boolean exists = DataBaseFile.isFile();
@@ -106,8 +109,8 @@ public class DataP
     }
 
     /**
-     *
-     * @param expression
+     * bekommt eine SQL expression die auf der Datenbank ausgefürt werden soll.
+     * @param expression SQL expression die update ausführen soll
      */
     public void update(String expression)
     {
@@ -127,7 +130,7 @@ public class DataP
     }
 
     /**
-     *
+     * Beendet die Verbdindung zur Datenbank
      */
     public void shutdown()
     {
@@ -142,7 +145,7 @@ public class DataP
     }
 
     /**
-     *
+     * Constructor (initialisiert die Datenbank)
      */
     public DataP()
     {
@@ -150,8 +153,8 @@ public class DataP
     }
 
     /**
-     *
-     * @param b
+     * Speichert einen neuen Benutzer in der Datenbank
+     * @param b Benutzer dessen Daten gespeichert werden sollen.
      */
     public void saveNewBenutzer(Benutzer b)
     {
@@ -177,10 +180,10 @@ public class DataP
     }
         
     /**
-     *
-     * @param sOldEmail
-     * @param b
-     * @param NewPW
+     * Ändert die Daten eines gespeicherten Benutzers
+     * @param sOldEmail Die bisherige Email Adresse des zu ändernden Benutzers.
+     * @param b Die neuen Daten des Benutzers.
+     * @param NewPW Auf True setzen wenn ein neues Passwort gespeichert werden soll.
      */
     public void updateBenutzer(String sOldEmail, Benutzer b, boolean NewPW)
     {
@@ -220,9 +223,9 @@ public class DataP
     }
     
     /**
-     *
-     * @param email
-     * @return
+     * Gibt einen Benutzer aus der Datenbank anhand der Emailadresse zurück.
+     * @param email Emailadresse des gesuchten Benutzers.
+     * @return Der gefundene Benutzer oder null wenn kein Benutzer gefunden wurde.
      */
     public Benutzer getBenutzer(String email)
     {
@@ -248,8 +251,8 @@ public class DataP
     }
         
     /**
-     *
-     * @return
+     * Gibt einen Vektor mit allen Benutzern in der Datenbank zurück.
+     * @return Vektor mit allen Benutzern in der Datenbank.
      */
     public Vector<Benutzer> getAllBenutzer()
     {
@@ -272,8 +275,8 @@ public class DataP
     }
     
     /**
-     *
-     * @return
+     * Gibt ein Tabellenmodell mit allen Benutzern in der Datenbank zurück.
+     * @return Tabellenmoddel mit allen Benutzern in der Datenbank.
      */
     public model getBenutzerModel()
     {
@@ -310,8 +313,8 @@ public class DataP
     }
 
     /**
-     *
-     * @param sEmail
+     * Löscht einen Benutzern anhand seiner Emailadresse.
+     * @param sEmail Emailadresse des zu löschenden Benutzers.
      */
     public void deleteBenutzer(String sEmail)
     {
@@ -326,8 +329,8 @@ public class DataP
     }
     
     /**
-     *
-     * @param p
+     * Speichert ein neues Projekt in der Datenbank.
+     * @param p Daten des zu speichernden Projektes.
      */
     public void saveNewProjekt(Projekt p)
     {
@@ -368,9 +371,9 @@ public class DataP
     }
     
     /**
-     *
-     * @param titel
-     * @return
+     * Gibt ein Projekt aus der Datenbank anhand des Titels zurück.
+     * @param titel Titel des gesuchten Projekts.
+     * @return Gefundenes Projekt oder wenn kein Projekt gefunden wurde null.
      */
     public Projekt getProjekt(String titel)
     {
@@ -400,9 +403,9 @@ public class DataP
     }
         
     /**
-     *
-     * @param sOldTitel
-     * @param p
+     * Ändert die Daten eines Projektes.
+     * @param sOldTitel Aktueller Titel des Projektes.
+     * @param p Neue Daten des Projektes.
      */
     public void updateProjekt(String sOldTitel, Projekt p)
     {
@@ -437,8 +440,8 @@ public class DataP
     }
     
     /**
-     *
-     * @return
+     * Gibt einen Vektor mit allen bestehenden Projekten zurück.
+     * @return Alle bestehenden Projekte.
      */
     public Vector<Projekt> getAllProjekt()
     {
@@ -473,8 +476,8 @@ public class DataP
     }
     
     /**
-     *
-     * @return
+     * Gibt ein Tabellenmodell mit allen bestehenden Projekten zurück.
+     * @return Tabellenmoddel mit allen bestehenden Projekten.
      */
     public model getProjektModel()
     {
@@ -503,8 +506,8 @@ public class DataP
     } 
     
     /**
-     *
-     * @param sTitel
+     * Löscht ein Projekt anhand des Titels
+     * @param sTitel Titel des zu löschenden Projektes.
      */
     public void deleteProjekt(String sTitel)
     {
@@ -519,8 +522,8 @@ public class DataP
     }
         
     /**
-     *
-     * @param a
+     * Speichert einen neuen Ansprechpartner in der Datenbank.
+     * @param a Der zu speichernde Ansprechpartner.
      */
     public void saveNewAnsprechpartner(Ansprechpartner a)
     {
@@ -541,9 +544,9 @@ public class DataP
     }
         
     /**
-     *
-     * @param sOldEmail
-     * @param a
+     * Ändert die Daten eines bestehenden Ansprechpartners.
+     * @param sOldEmail Aktuelle Emailadresse des zu ändernden Ansprechpartners.
+     * @param a Die Neuen Daten des Ansprechpartners.
      */
     public void updateAnsprechpartner(String sOldEmail, Ansprechpartner a)
     {
@@ -564,9 +567,9 @@ public class DataP
     }
         
     /**
-     *
-     * @param email
-     * @return
+     * Gibt einen bestehenden Ansprechpartner anhand seiner Email Adresse zurück.
+     * @param email Email Adresse des gesuchten Ansprechpartners.
+     * @return Gibt den gefundenen Ansprechpartner zurück oder wenn keiner gefunden wurde null.
      */
     public Ansprechpartner getAnsprechpartner(String email)
     {
@@ -593,8 +596,8 @@ public class DataP
     }
     
     /**
-     *
-     * @return
+     * Gibt einen Vektor mit allen in der Datenbank gespeicherten Ansprechpartnern zurück.
+     * @return Alle in der Datenbank gespeicherten Ansprechpartner.
      */
     public Vector<Ansprechpartner> getAllAnsprechpartner()
     {
@@ -618,8 +621,8 @@ public class DataP
     }
     
     /**
-     *
-     * @return
+     * Gibt ein Tabellenmodell mit allen Ansprechpartnern zurück.
+     * @return Tabellenmodell mit allen gespeicherten Ansprechpartnern.
      */
     public model getAnsprechpartnerModel()
     {
@@ -643,8 +646,8 @@ public class DataP
     }
 
     /**
-     *
-     * @param sEmail
+     * Löscht einen Ansprechpartner aus der Datenbank anhand seiner Email Adresse.
+     * @param sEmail Email Adresse des zu löschenden Ansprechpartners.
      */
     public void deleteAnsprechpartner(String sEmail)
     {
@@ -659,8 +662,8 @@ public class DataP
     }
         
     /**
-     *
-     * @param o
+     * Speichert eine neue Organisation in der Datenbank.
+     * @param o die zu speichernde Organisation.
      */
     public void saveNewOrganisation(Organisation o)
     {
@@ -681,9 +684,9 @@ public class DataP
     }
         
     /**
-     *
-     * @param sOldName
-     * @param o
+     * Ändert eine bestehende Organisation.
+     * @param sOldName Der bisherige Name der Organisation.
+     * @param o Die neuen Daten der Organisation.
      */
     public void updateOrganisation(String sOldName, Organisation o)
     {
@@ -704,9 +707,9 @@ public class DataP
     }
 
     /**
-     *
-     * @param name
-     * @return
+     * Gibt eine gesuchte Organisation anhand des Namens zurück.
+     * @param name Name der gesuchten Organisation.
+     * @return Die Organisation wenn gefunden wurde. Ansonsten null. 
      */
     public Organisation getOrganisation(String name)
     {
@@ -732,8 +735,8 @@ public class DataP
     }
 
     /**
-     *
-     * @return
+     * Gibt einen Vektor mit allen Organisationen zurück.
+     * @return Alle gespeicherten Organisationen.
      */
     public Vector<Organisation> getAllOrganisation()
     {
@@ -756,8 +759,8 @@ public class DataP
     }
 
     /**
-     *
-     * @return
+     * Gibt ein Tabellenmodell mit allen Organisationen zurück.
+     * @return Tabellenmodell mit allen Organisationen.
      */
     public model getOrganisationsModel()
     {
@@ -798,8 +801,8 @@ public class DataP
     }
 
     /**
-     *
-     * @param sName
+     * Löscht eine Organisation anhand des Namens.
+     * @param sName Name der zu löschenden Organisation.
      */
     public void deleteOrganisation(String sName)
     {

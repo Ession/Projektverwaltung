@@ -9,7 +9,8 @@ import de.fhswf.database.DataP;
 import java.awt.Color;
 
 /**
- *
+ * Im OrganisationWindow können alle Daten die zum anlegen einer Organisation benötigt werden eingegeben werden.
+ * 
  * @author Dark
  */
 public class OrganisationWindow extends javax.swing.JFrame {
@@ -20,7 +21,7 @@ public class OrganisationWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form OrganisationWindow
-     * @param _parent 
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
      */
     public OrganisationWindow(MainWindow _parent) {
         initComponents();
@@ -31,8 +32,8 @@ public class OrganisationWindow extends javax.swing.JFrame {
     
     /**
      * Creates new form OrganisationWindow
-     * @param _parent
-     * @param _org  
+     * @param _parent Parent Fenster in dem das neue Fenster erstellt wurde.
+     * @param _org Organisation deren Daten im neuen Fenster angezeigt werden sollen.
      */
     public OrganisationWindow(MainWindow _parent, Organisation _org) {
         initComponents();
