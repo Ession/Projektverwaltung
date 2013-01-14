@@ -97,7 +97,9 @@ public class ProjektWindow extends javax.swing.JFrame {
     public void SetBenutzer(Benutzer[] _benutzer) {
         Teilnehmer = _benutzer;
         
-        jLabelTeilnehmer.setText(Teilnehmer[0].getName() + ", " + Teilnehmer[0].getVorname());
+        if (Teilnehmer[0] != null) {
+            jLabelTeilnehmer.setText(Teilnehmer[0].getName() + ", " + Teilnehmer[1].getVorname());
+        }
         
         if (Teilnehmer[1] != null) {
             jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + "; " + Teilnehmer[1].getName() + ", " + Teilnehmer[1].getVorname());

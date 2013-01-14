@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung7";
+    private static final String DataBaseFileName = "projektverwaltung";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
     
@@ -896,13 +896,14 @@ public class DataP
     
     /**
      * löscht einen Projektteilnehmer
-     * @param iIndex der Index des Teilnehmer
+     * @param iIndex Der Index des Teilnehmers
      * @param sTitel Der Titel des Projektes
      */
     public void deleteProjektteilnehmer(int iIndex, String sTitel)
     {
-        if (iIndex <= 2) {
-            String query = "UPDATE projekt SET p_teilnehmer" + iIndex + "='' WHERE p_titel='" + sTitel + "'";
+        int index = iIndex + 1;
+        if (index <= 3) {
+            String query = "UPDATE projekt SET p_teilnehmer" + index + "='test' WHERE p_titel='" + sTitel + "'";
             
             try
             {
