@@ -1060,7 +1060,7 @@ public class DataP
         if (index <= 2 && titel != null) {
             try
             {
-                dataBase.update("UPDATE projekte SET p_vortrag" + index + "='' WHERE p_titel='" + titel + "'");
+                dataBase.update("UPDATE projekt SET p_vortrag" + index + "='' WHERE p_titel='" + titel + "'");
             }
             catch (SQLException ex)
             {
