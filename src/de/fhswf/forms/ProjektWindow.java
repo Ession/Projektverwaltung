@@ -7,6 +7,7 @@ package de.fhswf.forms;
 import de.fhswf.classes.Ansprechpartner;
 import de.fhswf.classes.Benutzer;
 import de.fhswf.classes.Projekt;
+import de.fhswf.classes.Teilnehmerzuordnung;
 import de.fhswf.database.DataP;
 import java.awt.Color;
 import java.util.Enumeration;
@@ -21,7 +22,7 @@ public class ProjektWindow extends javax.swing.JFrame {
     MainWindow parent;
     TeilnehmerWindow TeilnehmerW;
     Projekt projekt;
-    Benutzer[] Benutzer;
+    Benutzer[] Teilnehmer;
     boolean editMode;
     
     /**
@@ -94,16 +95,16 @@ public class ProjektWindow extends javax.swing.JFrame {
      * @param _benutzer Teilnehmer die Am projekt Teilnehmen sollen.
      */
     public void SetBenutzer(Benutzer[] _benutzer) {
-        Benutzer = _benutzer;
+        Teilnehmer = _benutzer;
         
-        jLabelTeilnehmer.setText(Benutzer[0].getName() + ", " + Benutzer[0].getVorname());
+        jLabelTeilnehmer.setText(Teilnehmer[0].getName() + ", " + Teilnehmer[0].getVorname());
         
-        if (Benutzer[1] != null) {
-            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + "; " + Benutzer[1].getName() + ", " + Benutzer[1].getVorname());
+        if (Teilnehmer[1] != null) {
+            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + "; " + Teilnehmer[1].getName() + ", " + Teilnehmer[1].getVorname());
         }
         
-        if (Benutzer[2] != null) {
-            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + "; " + Benutzer[2].getName() + ", " + Benutzer[2].getVorname());
+        if (Teilnehmer[2] != null) {
+            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + "; " + Teilnehmer[2].getName() + ", " + Teilnehmer[2].getVorname());
         }
     }
 
@@ -325,13 +326,32 @@ public class ProjektWindow extends javax.swing.JFrame {
                 && !jTextAreaBeschreibung.getText().equals("")
                 && !jTextAreaSkizze.getText().equals(""))
         {
-            if (Benutzer == null) {
+            if (Teilnehmer == null) {
                 JOptionPane.showMessageDialog(this, "Es muss mindestens ein Teilnehmer hinzugefügt werden.", "Teilnehmer", JOptionPane.ERROR_MESSAGE);
             }
             else {
                 DataP d = new DataP();
+                Teilnehmerzuordnung tz;
+                
+                for (int i=0; i<3; i++) {
+                    if (Teilnehmer[i] != null) {
+                        if (!Teilnehmer[i].getEmail().equals(parent.Benutzer.getEmail())) {
+                            if (editMode) {
+                                if (!Teilnehmer[i].getEmail().equals(d.getProjekt(jTextFieldTitel.getText()).getTeilnehmer()[i].getEmail())) {
+                                    tz = new Teilnehmerzuordnung(Teilnehmer[i].getEmail(), jTextFieldTitel.getText(), i);
+                                    d.saveNewTeilnehmerzuordnung(tz);
+                                }
+                            }
+                            else {
+                                tz = new Teilnehmerzuordnung(Teilnehmer[i].getEmail(), jTextFieldTitel.getText(), i);
+                                d.saveNewTeilnehmerzuordnung(tz);
+                            }
+                        }
+                    }
+                }
+                
                 Ansprechpartner ansp = d.getAnsprechpartner(jComboBoxAnsprechpartner.getSelectedItem().toString());
-                Projekt proj = new Projekt(jTextFieldTitel.getText(), jTextFieldFach.getText(), jTextAreaKurzbeschreibung.getText(), jTextAreaBeschreibung.getText(), jTextAreaSkizze.getText(), ansp, Benutzer, jTextFieldVortrag1.getText(), jTextFieldVortrag2.getText());
+                Projekt proj = new Projekt(jTextFieldTitel.getText(), jTextFieldFach.getText(), jTextAreaKurzbeschreibung.getText(), jTextAreaBeschreibung.getText(), jTextAreaSkizze.getText(), ansp, Teilnehmer, jTextFieldVortrag1.getText(), jTextFieldVortrag2.getText());
                 
                 if (editMode) {
                     d.updateProjekt(projekt.getTitel(), proj);
@@ -400,11 +420,11 @@ public class ProjektWindow extends javax.swing.JFrame {
         if (TeilnehmerW != null) {
             TeilnehmerW.dispose();
         }
-        if (Benutzer == null) {
+        if (Teilnehmer == null) {
             TeilnehmerW = new TeilnehmerWindow(this);
         }
         else {
-            TeilnehmerW = new TeilnehmerWindow(this, Benutzer);
+            TeilnehmerW = new TeilnehmerWindow(this, Teilnehmer);
         }
         TeilnehmerW.setVisible(true);
     }//GEN-LAST:event_jButtonTeilnehmerHinzufuegenActionPerformed

@@ -1,4 +1,4 @@
-SET DATABASE UNIQUE NAME HSQLDB3C1680364F
+SET DATABASE UNIQUE NAME HSQLDB3C3A7C996D
 SET DATABASE GC 0
 SET DATABASE DEFAULT RESULT MEMORY ROWS 0
 SET DATABASE EVENT LOG LEVEL 0
@@ -37,6 +37,7 @@ CREATE MEMORY TABLE PUBLIC.BENUTZER(B_NAME VARCHAR(30),B_VORNAME VARCHAR(30),B_P
 CREATE MEMORY TABLE PUBLIC.PROJEKT(P_TITEL VARCHAR(30),P_FACH VARCHAR(30),P_KURZBESCHREIBUNG VARCHAR(200),P_BESCHREIBUNG VARCHAR(1500),P_SKIZZE VARCHAR(300),P_ANSPRECHPARTNER VARCHAR(30),P_TEILNEHMER1 VARCHAR(30),P_TEILNEHMER2 VARCHAR(30),P_TEILNEHMER3 VARCHAR(30),P_VORTRAG1 VARCHAR(30),P_VORTRAG2 VARCHAR(30),UNIQUE(P_TITEL))
 CREATE MEMORY TABLE PUBLIC.ANSPRECHPARTNER(A_NAME VARCHAR(30),A_VORNAME VARCHAR(30),A_EMAIL VARCHAR(50),A_ORGANISATION VARCHAR(30),UNIQUE(A_EMAIL))
 CREATE MEMORY TABLE PUBLIC.ORGANISATION(O_NAME VARCHAR(30),O_ADRESSE VARCHAR(30),O_ORT VARCHAR(30),O_POSTLEITZAHL VARCHAR(5),UNIQUE(O_NAME))
+CREATE MEMORY TABLE PUBLIC.PROJEKTTEILNEHMER(PT_EMAIL VARCHAR(50),PT_TITEL VARCHAR(30),PT_INDEX INTEGER)
 ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
 SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
@@ -51,18 +52,14 @@ SET SCHEMA PUBLIC
 INSERT INTO BENUTZER VALUES('Jost','Mathias','11111','mail@mathiasjost.com','02373/12729','Stiftstra\u00dfe 19','Menden','58706',TRUE)
 INSERT INTO BENUTZER VALUES('Tester','Fred','22222','fred@tester.com','02373/12345','Teststra\u00dfe 1','Frankfurt','12345',FALSE)
 INSERT INTO BENUTZER VALUES('Tester','Greg','33333','greg@tester.com','02373/54321','Teststra\u00dfe 2','M\u00fcnchen','54321',FALSE)
-INSERT INTO BENUTZER VALUES('abba','b','12345','abba@b.com','12345','wo','da','98765',FALSE)
-INSERT INTO PROJEKT VALUES('Testprojekt 2','Java','Ein Einfaches Java Programm','Blub Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Immernoch ein einfaches Java Programm','chuck@tester.com','fred@tester.com','greg@tester.com','mail@mathiasjost.com','22.01.2013 10:30Uhr','28.01.2013 11:30Uhr')
-INSERT INTO PROJEKT VALUES('Testprojekt 3','MM','Ein Einfaches Gui Programm','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Immernoch ein einfaches GUI Programm','jeff@tester.com','mail@mathiasjost.com','greg@tester.com','greg@tester.com','21.01.2013 10:30Uhr','')
-INSERT INTO PROJEKT VALUES('a','a','a','a','a','Bill@tester.com','mail@mathiasjost.com','abba@b.com','','','')
-INSERT INTO PROJEKT VALUES('c','c','c','c','c','Bill@tester.com','mail@mathiasjost.com','abba@b.com','','','')
-INSERT INTO PROJEKT VALUES('b','b','b','b','b','chuck@tester.com','mail@mathiasjost.com','abba@b.com','','','')
-INSERT INTO PROJEKT VALUES('x','x','x','x','x','chuck@tester.com','mail@mathiasjost.com','abba@b.com','','','')
-INSERT INTO PROJEKT VALUES('y','y','yy','y','y','chuck@tester.com','mail@mathiasjost.com','','','','')
+INSERT INTO PROJEKT VALUES('Testprojekt 1','GUI','Ein Einfaches Gui Programm','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Immernoch ein einfaches GUI Programm','jeff@tester.com','mail@mathiasjost.com','greg@tester.com','','21.01.2013 10:30Uhr','')
+INSERT INTO PROJEKT VALUES('Testprojekt 2','Java','Ein Einfaches Java Programm','Blub Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Immernoch ein einfaches Java Programm','chuck@tester.com','fred@tester.com','greg@tester.com','greg@tester.com','22.01.2013 10:30Uhr','28.01.2013 11:30Uhr')
+INSERT INTO PROJEKT VALUES('a','a','a','a','a','chuck@tester.com','mail@mathiasjost.com','fred@tester.com','greg@tester.com','','')
 INSERT INTO ANSPRECHPARTNER VALUES('Tester','Jeff','jeff@tester.com','Fachhochschule S\u00fcdwestfahlen')
 INSERT INTO ANSPRECHPARTNER VALUES('Tester','Chuck','chuck@tester.com','Brumberg')
 INSERT INTO ANSPRECHPARTNER VALUES('Tester','Bill','Bill@tester.com','Brumberg')
-INSERT INTO ANSPRECHPARTNER VALUES('Testos','testy','testos@testy.com','Brumberg')
 INSERT INTO ORGANISATION VALUES('Fachhochschule S\u00fcdwestfahlen','Frauenstuhlweg 1','Iserlohn','58636')
 INSERT INTO ORGANISATION VALUES('Brumberg','Werweis 5','Menden','58706')
-INSERT INTO ORGANISATION VALUES('Bossberg','Ka 2','Minden','12347')
+INSERT INTO PROJEKTTEILNEHMER VALUES('mail@mathiasjost.com','a',0)
+INSERT INTO PROJEKTTEILNEHMER VALUES('mail@mathiasjost.com','a',1)
+INSERT INTO PROJEKTTEILNEHMER VALUES('mail@mathiasjost.com','a',2)

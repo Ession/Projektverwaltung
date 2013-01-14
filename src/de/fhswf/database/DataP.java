@@ -4,6 +4,7 @@ import de.fhswf.classes.Ansprechpartner;
 import de.fhswf.classes.Benutzer;
 import de.fhswf.classes.Organisation;
 import de.fhswf.classes.Projekt;
+import de.fhswf.classes.Teilnehmerzuordnung;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung3";
+    private static final String DataBaseFileName = "projektverwaltung6";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
     
@@ -76,6 +77,13 @@ public class DataP
                         + "o_adresse VARCHAR(30), "
                         + "o_ort VARCHAR(30), "
                         + "o_postleitzahl VARCHAR(5) "
+                        + ")");
+
+                update(
+                        "CREATE TABLE projektteilnehmer("
+                        + "pt_email VARCHAR(50), "
+                        + "pt_titel VARCHAR(30), "
+                        + "pt_index INTEGER "
                         + ")");
 
                 update("INSERT INTO benutzer(b_name, b_vorname, b_passwordhash, b_email, b_telefon, b_adresse, b_ort, b_postleitzahl, b_isadmin) "
@@ -423,7 +431,7 @@ public class DataP
                 }
                 
                 if (p.getTeilnehmer()[2] != null) {
-                    query += "p_teilnehmer3='" + p.getTeilnehmer()[1].getEmail() + "',";
+                    query += "p_teilnehmer3='" + p.getTeilnehmer()[2].getEmail() + "',";
                 }
                 
          query += "p_vortrag1='" + p.getVortrag1() + "',"
@@ -816,4 +824,96 @@ public class DataP
         }
     }
     
+    /**
+     * Fügt einem Projekt einen neuen Benutzer zu.
+     * @param b Benutzer der hinzugefügt werden soll.
+     * @param projekttitel Titel des Projektes dem der Benutzer hinzugefügt werden soll.
+     * @param teilnehmerindex Um den wievielten Teilnehmer handelt es sich.
+     */
+    public void setProjektteilnehmer(Benutzer b, String projekttitel, int teilnehmerindex)
+    {
+        if (teilnehmerindex <= 3 && b != null && getProjekt(projekttitel) != null) {
+            String query = "UPDATE projekt SET p_teilnehmer" + teilnehmerindex + "='" + b.getEmail() + "',WHERE p_titel='" + projekttitel + "'";
+        
+            try
+            {
+                dataBase.update(query);
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    /**
+     * Löscht einen Teilnehmer aus der Zuordnungstabelle
+     * @param b Benutzer der gelöscht werdne soll
+     * @param projekttitel Titel des Projektes dem der Benutzer zugeordnet war.
+     */
+    public void deleteTeilnehmerzuordnung(Benutzer b, String projekttitel)
+    {
+        if (b != null) {
+            try
+            {
+                dataBase.update("DELETE FROM projektteilnehmer WHERE pt_email='" + b.getEmail() + "' AND pt_titel='" + projekttitel + "'");
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }    
+    
+    /**
+     * Gibt einen gesuchten Teilnehmer aus der Zuordnungstabelle zurück.
+     * @param email Email Adresse des gesuchten Benutzers.
+     * @return Gefundenezuordnung oder wenn keine Zuordnung gefunden wurde null.
+     */
+    public Teilnehmerzuordnung getTeilnehmerzuordnung(String email)
+    {
+        if (!email.equals("")) {
+            try
+            {
+                ResultSet rs = dataBase.query("Select * from projektteilnehmer where pt_email  = '" + email + "'");
+                if (rs.next())
+                {
+                    return new Teilnehmerzuordnung(rs.getString("pt_email"), rs.getString("pt_titel"), rs.getInt("pt_index"));
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return null;
+    }
+    
+    /**
+     * Fügt eine Teilnehmerzzordnung zur Zuordnungstabelle hinzu
+     * @param tz Hinzuzufügende Teilnehmerzuordnung
+     */
+    public void saveNewTeilnehmerzuordnung(Teilnehmerzuordnung tz)
+    {
+        if (tz != null) {
+            String query = "INSERT INTO projektteilnehmer(pt_email, pt_titel, pt_index) VALUES(";
+            query += "'" + tz.getEmail() + "',";
+            query += "'" + tz.getTitel() + "',";
+            query += "'" + tz.getTeilnehmerindex() + "'";
+            query += ")";
+            try
+            {
+                dataBase.update(query);
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }
