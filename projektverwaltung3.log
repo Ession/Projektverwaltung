@@ -1,0 +1,11 @@
+/*C9*/SET SCHEMA PUBLIC
+INSERT INTO PROJEKT VALUES('y','y','yy','y','y','chuck@tester.com','mail@mathiasjost.com','','','','')
+COMMIT
+/*C13*/SET SCHEMA PUBLIC
+DELETE FROM PROJEKT WHERE P_TITEL='y' AND P_FACH='y' AND P_KURZBESCHREIBUNG='yy' AND P_BESCHREIBUNG='y' AND P_SKIZZE='y' AND P_ANSPRECHPARTNER='chuck@tester.com' AND P_TEILNEHMER1='mail@mathiasjost.com' AND P_TEILNEHMER2='' AND P_TEILNEHMER3='' AND P_VORTRAG1='' AND P_VORTRAG2=''
+INSERT INTO PROJEKT VALUES('y','y','yy','y','y','chuck@tester.com','mail@mathiasjost.com','','','','')
+COMMIT
+/*C17*/SET SCHEMA PUBLIC
+DELETE FROM PROJEKT WHERE P_TITEL='y' AND P_FACH='y' AND P_KURZBESCHREIBUNG='yy' AND P_BESCHREIBUNG='y' AND P_SKIZZE='y' AND P_ANSPRECHPARTNER='chuck@tester.com' AND P_TEILNEHMER1='mail@mathiasjost.com' AND P_TEILNEHMER2='' AND P_TEILNEHMER3='' AND P_VORTRAG1='' AND P_VORTRAG2=''
+INSERT INTO PROJEKT VALUES('y','y','yy','y','y','chuck@tester.com','mail@mathiasjost.com','','','','')
+COMMIT

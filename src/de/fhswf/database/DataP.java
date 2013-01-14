@@ -386,7 +386,7 @@ public class DataP
                 Benutzer[] benu = new Benutzer[3];
                 benu[0] = getBenutzer(rs.getString("p_teilnehmer1"));
                 benu[1] = getBenutzer(rs.getString("p_teilnehmer2"));
-                benu[2] = getBenutzer(rs.getString("p_teilnehmer2"));
+                benu[2] = getBenutzer(rs.getString("p_teilnehmer3"));
                 return new Projekt(rs.getString("p_titel"), rs.getString("p_fach"), rs.getString("p_kurzbeschreibung"), rs.getString("p_beschreibung"), rs.getString("p_skizze"), ansp, benu, rs.getString("p_vortrag1"), rs.getString("p_vortrag2"));
             }
             else
