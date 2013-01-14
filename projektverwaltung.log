@@ -1,0 +1,6 @@
+/*C3*/SET SCHEMA PUBLIC
+DELETE FROM PROJEKT WHERE P_TITEL='c' AND P_FACH='c' AND P_KURZBESCHREIBUNG='c' AND P_BESCHREIBUNG='c' AND P_SKIZZE='c' AND P_ANSPRECHPARTNER='chuck@tester.com' AND P_TEILNEHMER1='mail@mathiasjost.com' AND P_TEILNEHMER2='greg@tester.com' AND P_TEILNEHMER3='fred@tester.com' AND P_VORTRAG1='' AND P_VORTRAG2=''
+INSERT INTO PROJEKT VALUES('c','c','c','c','c','chuck@tester.com','mail@mathiasjost.com','greg@tester.com','test','','')
+COMMIT
+DELETE FROM PROJEKTTEILNEHMER WHERE PT_EMAIL='fred@tester.com' AND PT_TITEL='c' AND PT_INDEX=2
+COMMIT
