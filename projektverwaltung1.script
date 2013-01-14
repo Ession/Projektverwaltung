@@ -1,4 +1,4 @@
-SET DATABASE UNIQUE NAME HSQLDB3C3B04A236
+SET DATABASE UNIQUE NAME HSQLDB3C3B45FDE4
 SET DATABASE GC 0
 SET DATABASE DEFAULT RESULT MEMORY ROWS 0
 SET DATABASE EVENT LOG LEVEL 0
@@ -38,6 +38,7 @@ CREATE MEMORY TABLE PUBLIC.PROJEKT(P_TITEL VARCHAR(30),P_FACH VARCHAR(30),P_KURZ
 CREATE MEMORY TABLE PUBLIC.ANSPRECHPARTNER(A_NAME VARCHAR(30),A_VORNAME VARCHAR(30),A_EMAIL VARCHAR(50),A_ORGANISATION VARCHAR(30),UNIQUE(A_EMAIL))
 CREATE MEMORY TABLE PUBLIC.ORGANISATION(O_NAME VARCHAR(30),O_ADRESSE VARCHAR(30),O_ORT VARCHAR(30),O_POSTLEITZAHL VARCHAR(5),UNIQUE(O_NAME))
 CREATE MEMORY TABLE PUBLIC.PROJEKTTEILNEHMER(PT_EMAIL VARCHAR(50),PT_TITEL VARCHAR(30),PT_INDEX INTEGER)
+CREATE MEMORY TABLE PUBLIC.TERMINVORSCHLAG(TV_TITEL VARCHAR(50),TV_TERMIN VARCHAR(30),TV_INDEX INTEGER,TV_STATUS VARCHAR(30))
 ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
 SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
@@ -53,14 +54,16 @@ INSERT INTO BENUTZER VALUES('Jost','Mathias','11111','mail@mathiasjost.com','023
 INSERT INTO BENUTZER VALUES('Tester','Fred','22222','fred@tester.com','02373/12345','Teststra\u00dfe 1','Frankfurt','12345',FALSE)
 INSERT INTO BENUTZER VALUES('Tester','Greg','33333','greg@tester.com','02373/54321','Teststra\u00dfe 2','M\u00fcnchen','54321',FALSE)
 INSERT INTO PROJEKT VALUES('Testprojekt 1','GUI','Ein Einfaches Gui Programm','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Immernoch ein einfaches GUI Programm','jeff@tester.com','mail@mathiasjost.com','greg@tester.com','','21.01.2013 10:30Uhr','')
-INSERT INTO PROJEKT VALUES('Testprojekt 2','Java','Ein Einfaches Java Programm','Blub Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Immernoch ein einfaches Java Programm','chuck@tester.com','fred@tester.com','greg@tester.com','mail@mathiasjost.com','22.01.2013 10:30Uhr','28.01.2013 11:30Uhr')
-INSERT INTO PROJEKT VALUES('a','a','a','aa','a','chuck@tester.com','mail@mathiasjost.com','fred@tester.com','greg@tester.com','','')
-INSERT INTO PROJEKT VALUES('v','v','v','v','v','chuck@tester.com','mail@mathiasjost.com','','','Donnerstag','Freitag')
-INSERT INTO PROJEKT VALUES('h','h','h','h','h','chuck@tester.com','mail@mathiasjost.com','greg@tester.com','fred@tester.com','heute','morgen')
-INSERT INTO PROJEKT VALUES('c','c','c','c','c','chuck@tester.com','mail@mathiasjost.com','greg@tester.com','test','freitag','')
+INSERT INTO PROJEKT VALUES('a','a','a','a','a','chuck@tester.com','mail@mathiasjost.com','fred@tester.com','','morgen','')
+INSERT INTO PROJEKT VALUES('Testprojekt 2','Java','Ein Einfaches Java Programm','Blub Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.','Immernoch ein einfaches Java Programm','chuck@tester.com','fred@tester.com','greg@tester.com','mail@mathiasjost.com','meh','heute')
+INSERT INTO PROJEKT VALUES('g','g','g','g','g','chuck@tester.com','mail@mathiasjost.com','fred@tester.com','','a','c')
 INSERT INTO ANSPRECHPARTNER VALUES('Tester','Jeff','jeff@tester.com','Fachhochschule S\u00fcdwestfahlen')
 INSERT INTO ANSPRECHPARTNER VALUES('Tester','Chuck','chuck@tester.com','Brumberg')
 INSERT INTO ANSPRECHPARTNER VALUES('Tester','Bill','Bill@tester.com','Brumberg')
 INSERT INTO ORGANISATION VALUES('Fachhochschule S\u00fcdwestfahlen','Frauenstuhlweg 1','Iserlohn','58636')
 INSERT INTO ORGANISATION VALUES('Brumberg','Werweis 5','Menden','58706')
-INSERT INTO PROJEKTTEILNEHMER VALUES('greg@tester.com','c',1)
+INSERT INTO TERMINVORSCHLAG VALUES('Testprojekt 2','heute',2,'angelehnt')
+INSERT INTO TERMINVORSCHLAG VALUES('a','morgen',1,'angenommen')
+INSERT INTO TERMINVORSCHLAG VALUES('Testprojekt 2','meh',1,'angenommen')
+INSERT INTO TERMINVORSCHLAG VALUES('g','a',1,'pending')
+INSERT INTO TERMINVORSCHLAG VALUES('g','c',2,'pending')

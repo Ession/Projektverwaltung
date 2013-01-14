@@ -5,6 +5,7 @@ import de.fhswf.classes.Benutzer;
 import de.fhswf.classes.Organisation;
 import de.fhswf.classes.Projekt;
 import de.fhswf.classes.Teilnehmerzuordnung;
+import de.fhswf.classes.Terminvorschlag;
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung";
+    private static final String DataBaseFileName = "projektverwaltung2";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
     
@@ -84,6 +85,14 @@ public class DataP
                         + "pt_email VARCHAR(50), "
                         + "pt_titel VARCHAR(30), "
                         + "pt_index INTEGER "
+                        + ")");
+
+                update(
+                        "CREATE TABLE terminvorschlag("
+                        + "tv_titel VARCHAR(50), "
+                        + "tv_termin VARCHAR(30), "
+                        + "tv_index INTEGER, "
+                        + "tv_status VARCHAR(30) "
                         + ")");
 
                 update("INSERT INTO benutzer(b_name, b_vorname, b_passwordhash, b_email, b_telefon, b_adresse, b_ort, b_postleitzahl, b_isadmin) "
@@ -936,6 +945,148 @@ public class DataP
             {
                 Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+    
+      
+    
+    /**
+     * Gibt einen Terminvorschlag zurück
+     * @param sStatus Status des gesuchten Terminvorschlags
+     * @return Gefundener Terminvorschlag oder wenn keine Zuordnung gefunden wurde null.
+     */
+    public Terminvorschlag getTerminvorschlagStatus(String sStatus)
+    {
+        if (sStatus.equals("pending") || sStatus.equals("angenommen") || sStatus.equals("abgelehnt")) {
+            try
+            {
+                ResultSet rs = dataBase.query("Select * from terminvorschlag WHERE tv_status='" + sStatus + "'");
+                if (rs.next())
+                {
+                    return new Terminvorschlag(rs.getString("tv_titel"), rs.getString("tv_termin"), rs.getInt("tv_index"), rs.getString("tv_status"));
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Gibt einen Terminvorschlag zurück
+     * @param sTitel Titel des Projektes
+     * @return Gefundener Terminvorschlag oder wenn keine Zuordnung gefunden wurde null.
+     */
+    public Terminvorschlag getTerminvorschlagTitel(String sTitel)
+    {
+        if (sTitel != null) {
+            try
+            {
+                ResultSet rs = dataBase.query("Select * from terminvorschlag WHERE tv_titel='" + sTitel + "'");
+                if (rs.next())
+                {
+                    return new Terminvorschlag(rs.getString("tv_titel"), rs.getString("tv_termin"), rs.getInt("tv_index"), rs.getString("tv_status"));
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+    
+    
+    /**
+     * Fügt eine Terminvorschlag zur Datenbank hinzu
+     * @param tv Hinzuzufügende Terminvorschlag
+     */
+    public void saveNewTerminvorschlag(Terminvorschlag tv)
+    {
+        if (tv != null) {
+            String query = "INSERT INTO terminvorschlag(tv_titel, tv_termin, tv_index, tv_status) VALUES(";
+            query += "'" + tv.getTitel() + "',";
+            query += "'" + tv.getTermin() + "',";
+            query += "'" + tv.getIndex() + "',";
+            query += "'" + tv.getStatus() + "'";
+            query += ")";
+            try
+            {
+                dataBase.update(query);
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    /**
+     * Löscht einen Terminvorschlag aus der Datenbank
+     * @param index Index des Vorgeschlagenen Termins.
+     * @param projekttitel Titel des Projektes dem der Temrin zugeordnet ist.
+     */
+    public void deleteTerminvorschlag(int index, String projekttitel)
+    {
+        if (index <= 2 && projekttitel != null) {
+            try
+            {
+                dataBase.update("DELETE FROM terminvorschlag WHERE tv_titel='" + projekttitel + "' AND tv_index='" + index + "'");
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }  
+    
+    /**
+     * Löscht einen Termin aus der Datenbank
+     * @param titel Titel des Projektes.
+     * @param index Index des Termins
+     */
+    public void deleteTermin(int index, String titel)
+    {
+        if (index <= 2 && titel != null) {
+            try
+            {
+                dataBase.update("UPDATE projekte SET p_vortrag" + index + "='' WHERE p_titel='" + titel + "'");
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }        
+    
+    /**
+     * Ändert den Status eines Terminvorschlags
+     * @param index Index des Vorgeschlagenen Termins.
+     * @param projekttitel Titel des Projektes dem der Termin zugeordnet ist.
+     * @param sStaus Neuer Status des Vorschlags.
+     */
+    public void updateTerminstatus(int index, String projekttitel, String sStaus)
+    {
+        String query = "UPDATE terminvorschlag "
+                + "SET tv_status='" + sStaus + "' "
+                + "WHERE tv_titel='" + projekttitel + "' AND tv_index='" + index + "' ";
+        try
+        {
+            dataBase.update(query);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -145,6 +145,20 @@ public class LoginWindow extends javax.swing.JFrame {
                         d.deleteTeilnehmerzuordnung(benutzer, d.getTeilnehmerzuordnung(benutzer.getEmail()).getTitel());
                     }
                 }
+                
+                if (benutzer.getIsAdmin()) {
+                    while (d.getTerminvorschlagStatus("pending") != null) {
+                        int dialogResult = JOptionPane.showConfirmDialog(this, "Möchten Sie den Termin: " + d.getTerminvorschlagStatus("pending").getTermin() + " \nder Projektes: " + d.getTerminvorschlagStatus("pending").getTitel() + " bestätigen?","Terminvorschlag",JOptionPane.YES_NO_OPTION);
+                    
+                        if(dialogResult == JOptionPane.YES_OPTION) {
+                            d.updateTerminstatus(d.getTerminvorschlagStatus("pending").getIndex(), d.getTerminvorschlagStatus("pending").getTitel(), "angenommen");
+                        }
+                        else {
+                            d.updateTerminstatus(d.getTerminvorschlagStatus("pending").getIndex(), d.getTerminvorschlagStatus("pending").getTitel(), "abgelehnt");
+                            d.deleteTermin(d.getTerminvorschlagStatus("pending").getIndex(), d.getTerminvorschlagStatus("pending").getTitel());
+                        }
+                    }
+                }
                     
                 
                 

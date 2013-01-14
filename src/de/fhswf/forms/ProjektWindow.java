@@ -8,6 +8,7 @@ import de.fhswf.classes.Ansprechpartner;
 import de.fhswf.classes.Benutzer;
 import de.fhswf.classes.Projekt;
 import de.fhswf.classes.Teilnehmerzuordnung;
+import de.fhswf.classes.Terminvorschlag;
 import de.fhswf.database.DataP;
 import java.awt.Color;
 import java.util.Enumeration;
@@ -35,9 +36,14 @@ public class ProjektWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         parent = _parent;
         projekt = _projekt;
+        DataP d = new DataP();
+        
+        while (d.getTerminvorschlagTitel(projekt.getTitel()) != null && !d.getTerminvorschlagTitel(projekt.getTitel()).getStatus().equals("pending")) {
+            JOptionPane.showMessageDialog(this, "Der Termin: " + d.getTerminvorschlagTitel(projekt.getTitel()).getTermin() + " wurde " + d.getTerminvorschlagTitel(projekt.getTitel()).getStatus() +".", "Termin " + d.getTerminvorschlagTitel(projekt.getTitel()).getStatus(), JOptionPane.INFORMATION_MESSAGE);
+            d.deleteTerminvorschlag(d.getTerminvorschlagTitel(projekt.getTitel()).getIndex(), d.getTerminvorschlagTitel(projekt.getTitel()).getTitel());
+        }
         
         jComboBoxAnsprechpartner.removeAllItems();
-        DataP d = new DataP();
         for (Enumeration<Ansprechpartner> eo = d.getAllAnsprechpartner().elements(); eo.hasMoreElements();)
         {
             jComboBoxAnsprechpartner.addItem(eo.nextElement().getEmail());
@@ -334,6 +340,7 @@ public class ProjektWindow extends javax.swing.JFrame {
             else {
                 DataP d = new DataP();
                 Teilnehmerzuordnung tz;
+                Terminvorschlag tv;
                 
                 for (int i=0; i<3; i++) {
                     if (Teilnehmer[i] != null) {
@@ -354,6 +361,20 @@ public class ProjektWindow extends javax.swing.JFrame {
                         }
                     }
                 }
+                
+                if (!jTextFieldVortrag1.getText().equals("")) {
+                    if (!jTextFieldVortrag1.getText().equals(d.getProjekt(jTextFieldTitel.getText()).getVortrag1())) {
+                        tv = new Terminvorschlag(d.getProjekt(jTextFieldTitel.getText()).getTitel(), jTextFieldVortrag1.getText(), 1, "pending");
+                        d.saveNewTerminvorschlag(tv);
+                    }
+                }  
+                
+                if (!jTextFieldVortrag2.getText().equals("")) {
+                    if (!jTextFieldVortrag2.getText().equals(d.getProjekt(jTextFieldTitel.getText()).getVortrag2())) {
+                        tv = new Terminvorschlag(d.getProjekt(jTextFieldTitel.getText()).getTitel(), jTextFieldVortrag2.getText(), 2, "pending");
+                        d.saveNewTerminvorschlag(tv);
+                    }
+                }    
                 
                 Ansprechpartner ansp = d.getAnsprechpartner(jComboBoxAnsprechpartner.getSelectedItem().toString());
                 Projekt proj = new Projekt(jTextFieldTitel.getText(), jTextFieldFach.getText(), jTextAreaKurzbeschreibung.getText(), jTextAreaBeschreibung.getText(), jTextAreaSkizze.getText(), ansp, Teilnehmer, jTextFieldVortrag1.getText(), jTextFieldVortrag2.getText());
