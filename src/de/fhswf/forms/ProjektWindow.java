@@ -96,14 +96,14 @@ public class ProjektWindow extends javax.swing.JFrame {
     public void SetBenutzer(Benutzer[] _benutzer) {
         Benutzer = _benutzer;
         
-        jLabelTeilnehmer.setText(Benutzer[0].getName());
+        jLabelTeilnehmer.setText(Benutzer[0].getName() + ", " + Benutzer[0].getVorname());
         
         if (Benutzer[1] != null) {
-            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + ", " + Benutzer[1].getName());
+            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + "; " + Benutzer[1].getName() + ", " + Benutzer[1].getVorname());
         }
         
         if (Benutzer[2] != null) {
-            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + ", " + Benutzer[2].getName());
+            jLabelTeilnehmer.setText(jLabelTeilnehmer.getText() + "; " + Benutzer[2].getName() + ", " + Benutzer[2].getVorname());
         }
     }
 
@@ -397,11 +397,15 @@ public class ProjektWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextAreaSkizzeKeyTyped
 
     private void jButtonTeilnehmerHinzufuegenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTeilnehmerHinzufuegenActionPerformed
-        if (TeilnehmerW != null)
-        {
+        if (TeilnehmerW != null) {
             TeilnehmerW.dispose();
         }
-        TeilnehmerW = new TeilnehmerWindow(this);
+        if (Benutzer == null) {
+            TeilnehmerW = new TeilnehmerWindow(this);
+        }
+        else {
+            TeilnehmerW = new TeilnehmerWindow(this, Benutzer);
+        }
         TeilnehmerW.setVisible(true);
     }//GEN-LAST:event_jButtonTeilnehmerHinzufuegenActionPerformed
 

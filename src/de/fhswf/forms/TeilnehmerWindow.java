@@ -34,6 +34,7 @@ public class TeilnehmerWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         parent = _parent;
+        
     }
     
     /**
@@ -45,6 +46,21 @@ public class TeilnehmerWindow extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         parent = _parent;
+        
+        if (_benutzer[0] != null) {
+            System.out.println(_benutzer[0].getEmail());
+            jTextFieldTeilnehmer1.setText(_benutzer[0].getEmail());
+        }
+        
+        if (_benutzer[1] != null) {
+            System.out.println(_benutzer[1].getEmail());
+            jTextFieldTeilnehmer2.setText(_benutzer[1].getEmail());
+        }
+        
+        if (_benutzer[2] != null) {
+            System.out.println(_benutzer[2].getEmail());
+            jTextFieldTeilnehmer3.setText(_benutzer[2].getEmail());
+        }
     }
 
     /**
