@@ -337,10 +337,13 @@ public class ProjektWindow extends javax.swing.JFrame {
                     if (Teilnehmer[i] != null) {
                         if (!Teilnehmer[i].getEmail().equals(parent.Benutzer.getEmail())) {
                             if (editMode) {
-                                if (!Teilnehmer[i].getEmail().equals(d.getProjekt(jTextFieldTitel.getText()).getTeilnehmer()[i].getEmail())) {
-                                    tz = new Teilnehmerzuordnung(Teilnehmer[i].getEmail(), jTextFieldTitel.getText(), i);
-                                    d.saveNewTeilnehmerzuordnung(tz);
+                                if (d.getProjekt(jTextFieldTitel.getText()).getTeilnehmer()[i] != null) {
+                                    if (!Teilnehmer[i].getEmail().equals(d.getProjekt(jTextFieldTitel.getText()).getTeilnehmer()[i].getEmail())) {
+                                        tz = new Teilnehmerzuordnung(Teilnehmer[i].getEmail(), jTextFieldTitel.getText(), i);
+                                        d.saveNewTeilnehmerzuordnung(tz);
+                                    } 
                                 }
+                                
                             }
                             else {
                                 tz = new Teilnehmerzuordnung(Teilnehmer[i].getEmail(), jTextFieldTitel.getText(), i);

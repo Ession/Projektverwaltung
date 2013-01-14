@@ -132,7 +132,23 @@ public class LoginWindow extends javax.swing.JFrame {
         }
         else {
             if(benutzer.getPasswordHash().equals(password)) {
-                //Passwort ist richtig
+                
+                // Hat der Benutzer ausstehende Projektzuordnungen?
+                while (d.getTeilnehmerzuordnung(benutzer.getEmail()) != null){
+                    int dialogResult = JOptionPane.showConfirmDialog(this, "Möchten Sie am Projekt: " + d.getTeilnehmerzuordnung(benutzer.getEmail()).getTitel() + " teilnehmen?","Projekteinladung",JOptionPane.YES_NO_OPTION);
+                    
+                    if(dialogResult == JOptionPane.YES_OPTION) {
+                        d.deleteTeilnehmerzuordnung(benutzer, d.getTeilnehmerzuordnung(benutzer.getEmail()).getTitel());
+                    }
+                    else {
+                        d.deleteProjektteilnehmer(d.getTeilnehmerzuordnung(benutzer.getEmail()).getTeilnehmerindex(), d.getTeilnehmerzuordnung(benutzer.getEmail()).getTitel());
+                        d.deleteTeilnehmerzuordnung(benutzer, d.getTeilnehmerzuordnung(benutzer.getEmail()).getTitel());
+                    }
+                }
+                    
+                
+                
+                // Passwort ist richtig
                 if(MainW != null)
                 {
                     MainW.dispose();

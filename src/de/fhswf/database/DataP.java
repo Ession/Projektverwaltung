@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung6";
+    private static final String DataBaseFileName = "projektverwaltung7";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
     
@@ -892,6 +892,27 @@ public class DataP
         }
 
         return null;
+    }
+    
+    /**
+     * löscht einen Projektteilnehmer
+     * @param iIndex der Index des Teilnehmer
+     * @param sTitel Der Titel des Projektes
+     */
+    public void deleteProjektteilnehmer(int iIndex, String sTitel)
+    {
+        if (iIndex <= 2) {
+            String query = "UPDATE projekt SET p_teilnehmer" + iIndex + "='' WHERE p_titel='" + sTitel + "'";
+            
+            try
+            {
+                dataBase.update(query);
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     /**
