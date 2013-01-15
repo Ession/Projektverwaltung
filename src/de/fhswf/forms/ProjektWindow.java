@@ -63,6 +63,18 @@ public class ProjektWindow extends javax.swing.JFrame {
         jTextFieldVortrag2.setText(projekt.getVortrag2());
         SetBenutzer(projekt.getTeilnehmer());
         
+        if(!parent.Benutzer.getIsAdmin()) {
+            jButtonAblehnen.setEnabled(false);
+            jButtonAnnehmen.setEnabled(false);
+            jButtonSpeichern.setEnabled(false);
+            
+            for (int i=0; i<3; i++) {
+                if (projekt.getTeilnehmer()[i] != null && parent.Benutzer.getEmail().equals(projekt.getTeilnehmer()[i].getEmail())) {
+                    jButtonSpeichern.setEnabled(true);
+                }
+            }
+        }
+                
         editMode = true;
     }
     

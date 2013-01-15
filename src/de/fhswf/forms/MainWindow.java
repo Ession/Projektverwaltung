@@ -35,6 +35,9 @@ public class MainWindow extends javax.swing.JFrame {
         
         if(!Benutzer.getIsAdmin()) {
             jTabbedPaneMain.setEnabledAt(2, false);
+            jButtonProjektLoeschen.setEnabled(false);
+            jButtonAnsprechpartnerLoeschen.setEnabled(false);
+            jButtonOrganisationLoeschen.setEnabled(false);
         }
     }
     
@@ -442,47 +445,55 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBenutzerLoeschenActionPerformed
 
     private void jButtonAnsprechpartnerBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnsprechpartnerBearbeitenActionPerformed
-        DataP d = new DataP();
+        if (jTableAnsprechpartner.getSelectedRow() != -1) {
+            DataP d = new DataP();
         
-        if (AnsprechpartnerW != null)
-        {
-            AnsprechpartnerW.dispose();
+            if (AnsprechpartnerW != null)
+            {
+                AnsprechpartnerW.dispose();
+            }
+            AnsprechpartnerW = new AnsprechpartnerWindow(this, d.getAnsprechpartner(jTableAnsprechpartner.getValueAt(jTableAnsprechpartner.getSelectedRow(), 1).toString()));
+            AnsprechpartnerW.setVisible(true);
         }
-        AnsprechpartnerW = new AnsprechpartnerWindow(this, d.getAnsprechpartner(jTableAnsprechpartner.getValueAt(jTableAnsprechpartner.getSelectedRow(), 1).toString()));
-        AnsprechpartnerW.setVisible(true);
     }//GEN-LAST:event_jButtonAnsprechpartnerBearbeitenActionPerformed
 
     private void jButtonOrganisationBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrganisationBearbeitenActionPerformed
-        DataP d = new DataP();
-        
-        if (OrganisationW != null)
-        {
-            OrganisationW.dispose();
+        if (jTableOrganisation.getSelectedRow() != -1) {
+            DataP d = new DataP();
+
+            if (OrganisationW != null)
+            {
+                OrganisationW.dispose();
+            }
+            OrganisationW = new OrganisationWindow(this, d.getOrganisation(jTableOrganisation.getValueAt(jTableOrganisation.getSelectedRow(), 0).toString()));
+            OrganisationW.setVisible(true);
         }
-        OrganisationW = new OrganisationWindow(this, d.getOrganisation(jTableOrganisation.getValueAt(jTableOrganisation.getSelectedRow(), 0).toString()));
-        OrganisationW.setVisible(true);
     }//GEN-LAST:event_jButtonOrganisationBearbeitenActionPerformed
 
     private void jButtonProjektBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProjektBearbeitenActionPerformed
-        DataP d = new DataP();
-        
-        if (ProjektW != null)
-        {
-            ProjektW.dispose();
+        if (jTableProjekte.getSelectedRow() != -1) {
+            DataP d = new DataP();
+
+            if (ProjektW != null)
+            {
+                ProjektW.dispose();
+            }
+            ProjektW = new ProjektWindow(this, d.getProjekt(jTableProjekte.getValueAt(jTableProjekte.getSelectedRow(), 0).toString()));
+            ProjektW.setVisible(true);
         }
-        ProjektW = new ProjektWindow(this, d.getProjekt(jTableProjekte.getValueAt(jTableProjekte.getSelectedRow(), 0).toString()));
-        ProjektW.setVisible(true);
     }//GEN-LAST:event_jButtonProjektBearbeitenActionPerformed
 
     private void jButtonBenutzerBearbeitenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBenutzerBearbeitenActionPerformed
-        DataP d = new DataP();
-        
-        if (BenutzerW != null)
-        {
-            BenutzerW.dispose();
+        if (jTableBenutzer.getSelectedRow() != -1) {
+            DataP d = new DataP();
+
+            if (BenutzerW != null)
+            {
+                BenutzerW.dispose();
+            }
+            BenutzerW = new BenutzerWindow(this, d.getBenutzer(jTableBenutzer.getValueAt(jTableBenutzer.getSelectedRow(), 1).toString()));
+            BenutzerW.setVisible(true);
         }
-        BenutzerW = new BenutzerWindow(this, d.getBenutzer(jTableBenutzer.getValueAt(jTableBenutzer.getSelectedRow(), 1).toString()));
-        BenutzerW.setVisible(true);
     }//GEN-LAST:event_jButtonBenutzerBearbeitenActionPerformed
 
     /**
