@@ -1,0 +1,23 @@
+/*C2*/SET SCHEMA PUBLIC
+CREATE TABLE benutzer(b_name VARCHAR(30), b_vorname VARCHAR(30), b_passwordhash VARCHAR(30), b_email VARCHAR(50) UNIQUE, b_telefon VARCHAR(30), b_adresse VARCHAR(30), b_ort VARCHAR(30), b_postleitzahl VARCHAR(5), b_isadmin BOOLEAN)
+CREATE TABLE projekt(p_titel VARCHAR(30) UNIQUE, p_fach VARCHAR(30), p_kurzbeschreibung VARCHAR(200), p_beschreibung VARCHAR(1500), p_skizze VARCHAR(300), p_ansprechpartner VARCHAR(30), p_teilnehmer1 VARCHAR(30), p_teilnehmer2 VARCHAR(30), p_teilnehmer3 VARCHAR(30), p_vortrag1 VARCHAR(30), p_vortrag2 VARCHAR(30), p_status VARCHAR(30), p_kommentar VARCHAR(150) )
+CREATE TABLE ansprechpartner(a_name VARCHAR(30),a_vorname VARCHAR(30), a_email VARCHAR(50) UNIQUE, a_organisation VARCHAR(30) )
+CREATE TABLE organisation(o_name VARCHAR(30) UNIQUE, o_adresse VARCHAR(30), o_ort VARCHAR(30), o_postleitzahl VARCHAR(5) )
+CREATE TABLE projektteilnehmer(pt_email VARCHAR(50), pt_titel VARCHAR(30), pt_index INTEGER )
+CREATE TABLE terminvorschlag(tv_titel VARCHAR(50), tv_termin VARCHAR(30), tv_index INTEGER, tv_status VARCHAR(30) )
+INSERT INTO BENUTZER VALUES('Jost','Mathias','11111','mail@mathiasjost.com','02373/12729','Stiftstra\u00dfe 19','Menden','58706',TRUE)
+COMMIT
+INSERT INTO BENUTZER VALUES('Tester','Fred','22222','fred@tester.com','02373/12345','Teststra\u00dfe 1','Frankfurt','12345',FALSE)
+COMMIT
+INSERT INTO BENUTZER VALUES('Tester','Greg','33333','greg@tester.com','02373/54321','Teststra\u00dfe 2','M\u00fcnchen','54321',FALSE)
+COMMIT
+INSERT INTO ANSPRECHPARTNER VALUES('Tester','Jeff','jeff@tester.com','Fachhochschule S\u00fcdwestfahlen')
+COMMIT
+INSERT INTO ANSPRECHPARTNER VALUES('Tester','Chuck','chuck@tester.com','Brumberg')
+COMMIT
+INSERT INTO ANSPRECHPARTNER VALUES('Tester','Bill','Bill@tester.com','Brumberg')
+COMMIT
+INSERT INTO ORGANISATION VALUES('Fachhochschule S\u00fcdwestfahlen','Frauenstuhlweg 1','Iserlohn','58636')
+COMMIT
+INSERT INTO ORGANISATION VALUES('Brumberg','Werweis 5','Menden','58706')
+COMMIT

@@ -18,6 +18,8 @@ public class Projekt {
     private Benutzer[] Teilnehmer;
     private String Vortrag1;
     private String Vortrag2;
+    private String Status;
+    private String Kommentar;
     
     /**
      * Legt ein neues Projekt an.
@@ -30,6 +32,8 @@ public class Projekt {
      * @param bTeilnehmer Teilnehmer des Projektes
      * @param sVortrag1 Erster Vortragstermin.
      * @param sVortrag2 Zweiter Vortragstermin.
+     * @param sStatus Projektstatus (angenommen/abgelehnt/pending)
+     * @param Kommentar Kommentar zum Projektstatus
      */
     public Projekt(String sTitel, 
             String sFach, 
@@ -39,7 +43,9 @@ public class Projekt {
             Ansprechpartner aAnsprechpartner, 
             Benutzer[] bTeilnehmer, 
             String sVortrag1, 
-            String sVortrag2) {
+            String sVortrag2,
+            String sStatus,
+            String sKommentar) {
         
         Titel = sTitel;
         Fach = sFach;
@@ -49,7 +55,9 @@ public class Projekt {
         Ansprechpartner = aAnsprechpartner;
         Teilnehmer = bTeilnehmer;
         Vortrag1 = sVortrag1;
-        Vortrag2 = sVortrag2;        
+        Vortrag2 = sVortrag2; 
+        Status = sStatus;
+        Kommentar = sKommentar;
     }
     
     /**
@@ -127,6 +135,20 @@ public class Projekt {
      */
     public void setVortrag2(String Vortrag2) {
         this.Vortrag2 = Vortrag2;
+    }
+
+    /**
+     * @return Kommentar zum Projekt
+     */
+    public String getKommentar() {
+        return Kommentar;
+    }
+
+    /**
+     * @return Projektstatus
+     */
+    public String getStatus() {
+        return Status;
     }
 
 }

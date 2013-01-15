@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author Dark
  */
 public class ProjektWindow extends javax.swing.JFrame {
-
+    KommentarWindow KommentarW;
     MainWindow parent;
     TeilnehmerWindow TeilnehmerW;
     Projekt projekt;
@@ -43,6 +43,10 @@ public class ProjektWindow extends javax.swing.JFrame {
             d.deleteTerminvorschlag(d.getTerminvorschlagTitel(projekt.getTitel()).getIndex(), d.getTerminvorschlagTitel(projekt.getTitel()).getTitel());
         }
         
+        if (projekt.getStatus().equals("abgelehnt")) {
+            JOptionPane.showMessageDialog(this, projekt.getKommentar(), "Abgelehnt", JOptionPane.INFORMATION_MESSAGE);
+        }
+            
         jComboBoxAnsprechpartner.removeAllItems();
         for (Enumeration<Ansprechpartner> eo = d.getAllAnsprechpartner().elements(); eo.hasMoreElements();)
         {
@@ -149,6 +153,8 @@ public class ProjektWindow extends javax.swing.JFrame {
         jTextFieldVortrag2 = new javax.swing.JTextField();
         jButtonAbbrechen = new javax.swing.JButton();
         jButtonSpeichern = new javax.swing.JButton();
+        jButtonAblehnen = new javax.swing.JButton();
+        jButtonAnnehmen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 500));
@@ -234,43 +240,58 @@ public class ProjektWindow extends javax.swing.JFrame {
             }
         });
 
+        jButtonAblehnen.setText("Ablehnen");
+        jButtonAblehnen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAblehnenActionPerformed(evt);
+            }
+        });
+
+        jButtonAnnehmen.setText("Annehmen");
+        jButtonAnnehmen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnnehmenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTitel)
-                            .addComponent(jTextFieldFach)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jComboBoxAnsprechpartner, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelTeilnehmer)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
-                                .addComponent(jButtonTeilnehmerHinzufuegen))
-                            .addComponent(jTextFieldVortrag1)
-                            .addComponent(jTextFieldVortrag2)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonAblehnen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAnnehmen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                         .addComponent(jButtonSpeichern)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAbbrechen)))
+                        .addComponent(jButtonAbbrechen))
+                    .addComponent(jTextFieldTitel)
+                    .addComponent(jTextFieldFach)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jComboBoxAnsprechpartner, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTeilnehmer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonTeilnehmerHinzufuegen))
+                    .addComponent(jTextFieldVortrag1)
+                    .addComponent(jTextFieldVortrag2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -290,7 +311,7 @@ public class ProjektWindow extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +337,9 @@ public class ProjektWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAbbrechen)
-                    .addComponent(jButtonSpeichern))
+                    .addComponent(jButtonSpeichern)
+                    .addComponent(jButtonAblehnen)
+                    .addComponent(jButtonAnnehmen))
                 .addContainerGap())
         );
 
@@ -377,7 +400,7 @@ public class ProjektWindow extends javax.swing.JFrame {
                 }    
                 
                 Ansprechpartner ansp = d.getAnsprechpartner(jComboBoxAnsprechpartner.getSelectedItem().toString());
-                Projekt proj = new Projekt(jTextFieldTitel.getText(), jTextFieldFach.getText(), jTextAreaKurzbeschreibung.getText(), jTextAreaBeschreibung.getText(), jTextAreaSkizze.getText(), ansp, Teilnehmer, jTextFieldVortrag1.getText(), jTextFieldVortrag2.getText());
+                Projekt proj = new Projekt(jTextFieldTitel.getText(), jTextFieldFach.getText(), jTextAreaKurzbeschreibung.getText(), jTextAreaBeschreibung.getText(), jTextAreaSkizze.getText(), ansp, Teilnehmer, jTextFieldVortrag1.getText(), jTextFieldVortrag2.getText(), "pending", "pending");
                 
                 if (editMode) {
                     d.updateProjekt(projekt.getTitel(), proj);
@@ -455,6 +478,25 @@ public class ProjektWindow extends javax.swing.JFrame {
         TeilnehmerW.setVisible(true);
     }//GEN-LAST:event_jButtonTeilnehmerHinzufuegenActionPerformed
 
+    private void jButtonAnnehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnehmenActionPerformed
+        DataP d = new DataP();
+        d.updateProjektStatus(projekt.getTitel(), "angenommen");
+                
+        parent.update();
+        this.dispose();
+    }//GEN-LAST:event_jButtonAnnehmenActionPerformed
+
+    private void jButtonAblehnenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAblehnenActionPerformed
+        DataP d = new DataP();
+        
+        if (KommentarW != null)
+        {
+            KommentarW.dispose();
+        }
+        KommentarW = new KommentarWindow(this, projekt);
+        KommentarW.setVisible(true);
+    }//GEN-LAST:event_jButtonAblehnenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -491,6 +533,8 @@ public class ProjektWindow extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAbbrechen;
+    private javax.swing.JButton jButtonAblehnen;
+    private javax.swing.JButton jButtonAnnehmen;
     private javax.swing.JButton jButtonSpeichern;
     private javax.swing.JButton jButtonTeilnehmerHinzufuegen;
     private javax.swing.JComboBox jComboBoxAnsprechpartner;

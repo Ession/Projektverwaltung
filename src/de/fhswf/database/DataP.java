@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class DataP
 {
 
-    private static final String DataBaseFileName = "projektverwaltung2";
+    private static final String DataBaseFileName = "projektverwaltung4";
     private static final File DataBaseFile = new File(DataBaseFileName + ".script");
     private DataBase dataBase;
     
@@ -61,7 +61,9 @@ public class DataP
                         + "p_teilnehmer2 VARCHAR(30), "
                         + "p_teilnehmer3 VARCHAR(30), "
                         + "p_vortrag1 VARCHAR(30), "
-                        + "p_vortrag2 VARCHAR(30) "
+                        + "p_vortrag2 VARCHAR(30), "
+                        + "p_status VARCHAR(30), "
+                        + "p_kommentar VARCHAR(150) "
                         + ")");
                 
                 update(
@@ -102,10 +104,10 @@ public class DataP
                 update("INSERT INTO benutzer(b_name, b_vorname, b_passwordhash, b_email, b_telefon, b_adresse, b_ort, b_postleitzahl, b_isadmin) "
                         + "VALUES('Tester','Greg','33333','greg@tester.com', '02373/54321', 'Teststraße 2', 'München', '54321', FALSE)");
                 
-                update("INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2) "
-                        + "VALUES('Testprojekt 1','GUI','Ein Einfaches Gui Programm','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 'Immernoch ein einfaches GUI Programm', 'jeff@tester.com', 'mail@mathiasjost.com', 'greg@tester.com', '', '21.01.2013 10:30Uhr', '')");
-                update("INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2) "
-                        + "VALUES('Testprojekt 2','Java','Ein Einfaches Java Programm','Blub Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 'Immernoch ein einfaches Java Programm', 'chuck@tester.com', 'fred@tester.com', 'greg@tester.com', 'mail@mathiasjost.com', '22.01.2013 10:30Uhr', '28.01.2013 11:30Uhr')");
+                update("INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2, p_status, p_kommentar) "
+                        + "VALUES('Testprojekt 1','GUI','Ein Einfaches Gui Programm','Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 'Immernoch ein einfaches GUI Programm', 'jeff@tester.com', 'mail@mathiasjost.com', 'greg@tester.com', '', '21.01.2013 10:30Uhr', '', 'angenommen', '')");
+                update("INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2, p_status, p_kommentar) "
+                        + "VALUES('Testprojekt 2','Java','Ein Einfaches Java Programm','Blub Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 'Immernoch ein einfaches Java Programm', 'chuck@tester.com', 'fred@tester.com', 'greg@tester.com', 'mail@mathiasjost.com', '22.01.2013 10:30Uhr', '28.01.2013 11:30Uhr', 'angenommen', '')");
                 
                 update("INSERT INTO ansprechpartner(a_name, a_vorname, a_email, a_organisation) "
                         + "VALUES('Tester','Jeff','jeff@tester.com','Fachhochschule Südwestfahlen')");
@@ -351,7 +353,7 @@ public class DataP
      */
     public void saveNewProjekt(Projekt p)
     {
-        String query = "INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2) VALUES(";
+        String query = "INSERT INTO projekt(p_titel, p_fach, p_kurzbeschreibung, p_beschreibung, p_skizze, p_ansprechpartner, p_teilnehmer1, p_teilnehmer2, p_teilnehmer3, p_vortrag1, p_vortrag2, p_status, p_kommentar) VALUES(";
         query += "'" + p.getTitel() + "',";
         query += "'" + p.getFach() + "',";
         query += "'" + p.getKurzbeschreibung() + "',";
@@ -375,7 +377,9 @@ public class DataP
         }
         
         query += "'" + p.getVortrag1() + "',";
-        query += "'" + p.getVortrag2() + "'";
+        query += "'" + p.getVortrag2() + "',";
+        query += "'" + p.getStatus() + "',";
+        query += "'" + p.getKommentar() + "'";
         query += ")";
         try
         {
@@ -404,7 +408,7 @@ public class DataP
                 benu[0] = getBenutzer(rs.getString("p_teilnehmer1"));
                 benu[1] = getBenutzer(rs.getString("p_teilnehmer2"));
                 benu[2] = getBenutzer(rs.getString("p_teilnehmer3"));
-                return new Projekt(rs.getString("p_titel"), rs.getString("p_fach"), rs.getString("p_kurzbeschreibung"), rs.getString("p_beschreibung"), rs.getString("p_skizze"), ansp, benu, rs.getString("p_vortrag1"), rs.getString("p_vortrag2"));
+                return new Projekt(rs.getString("p_titel"), rs.getString("p_fach"), rs.getString("p_kurzbeschreibung"), rs.getString("p_beschreibung"), rs.getString("p_skizze"), ansp, benu, rs.getString("p_vortrag1"), rs.getString("p_vortrag2"), rs.getString("p_status"), rs.getString("p_kommentar"));
             }
             else
             {
@@ -444,7 +448,9 @@ public class DataP
                 }
                 
          query += "p_vortrag1='" + p.getVortrag1() + "',"
-                + "p_vortrag2='" + p.getVortrag2() + "' "
+                + "p_vortrag2='" + p.getVortrag2() + "', "
+                + "p_status='" + p.getStatus() + "', "
+                + "p_kommentar='" + p.getKommentar() + "' "
                 + "WHERE p_titel='" + sOldTitel + "'";
         try
         {
@@ -481,7 +487,9 @@ public class DataP
                         Ansprechpartner, 
                         Teilnehmer, 
                         rs.getString("p_vortrag1"), 
-                        rs.getString("p_vortrag2")));
+                        rs.getString("p_vortrag2"), 
+                        rs.getString("p_status"), 
+                        rs.getString("p_kommentar")));
             }
         }
         catch (SQLException ex)
@@ -510,6 +518,7 @@ public class DataP
             zeilenVector.add(p.getAnsprechpartner().getName());
             zeilenVector.add(p.getVortrag1());
             zeilenVector.add(p.getVortrag2());
+            zeilenVector.add(p.getStatus());
             
             tabellenVector.add(zeilenVector);
         }
@@ -518,6 +527,7 @@ public class DataP
         header.add("Ansprechpartner");
         header.add("Vortrag 1");
         header.add("Vortrag 2");
+        header.add("Status");
         return new model(tabellenVector, header);
 
     } 
@@ -1068,6 +1078,44 @@ public class DataP
         catch (SQLException ex)
         {
             Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    /**
+     * Ändert den Status eines Projektes
+     * @param projekttitel Titel des Projektes dessen Status geändert wird.
+     * @param sStaus Neuer Status des Projektes(angenommen/abgelehnt).
+     */
+    public void updateProjektStatus(String projekttitel, String sStatus)
+    {
+        if (sStatus.equals("angenommen") || sStatus.equals("abgelehnt")) {
+            try
+            {
+                dataBase.update("UPDATE projekt SET p_status='" + sStatus + "' WHERE p_titel='" + projekttitel + "'");
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    /**
+     * Ändert den Kommentar eines Projektes
+     * @param projekttitel Titel des Projektes dessen Kommentar geändert wird.
+     * @param sKommentar Neuer Kommentar des Projektes.
+     */
+    public void updateProjektKommentar(String projekttitel, String sKommentar)
+    {
+        if (!sKommentar.equals("")) {
+            try
+            {
+                dataBase.update("UPDATE projekt SET p_kommentar='" + sKommentar + "' WHERE p_titel='" + projekttitel + "'");
+            }
+            catch (SQLException ex)
+            {
+                Logger.getLogger(DataP.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
